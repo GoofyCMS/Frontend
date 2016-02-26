@@ -1,0 +1,115 @@
+<div id="page-wrapper" [class.open]="toggle" ngCloak>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar">
+            <li class="sidebar-main">
+                <a (click)="toggleSidebar()">
+                    Goofy Dashboard
+                    <span class="menu-icon fa fa-toggle-down "></span>
+                </a>
+            </li>
+            <li class="sidebar-title"><span>NAVIGATION</span></li>
+            <li class="sidebar-list">
+                <a [routerLink]="['Main']">Dashboard <span class="menu-icon fa fa-dashboard"></span></a>
+            </li>
+            <li class="sidebar-list">
+                <a [routerLink]="['Servers']">Servers <span class="menu-icon fa fa-desktop"></span></a>
+            </li>
+            <li class="sidebar-list">
+                <a [routerLink]="['Users']">Users <span class="menu-icon fa fa-user"></span></a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="col-xs-6">
+                <a href="https://github.com/ziyasal/rdash-angular2" target="_blank">
+                    Github
+                </a>
+            </div>
+            <div class="col-xs-6">
+                <a href="https://github.com/ziyasal/rdash-angular2/README.md" target="_blank">
+                    About
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+        <div class="page-content">
+
+            <!-- Header Bar -->
+            <div class="row header">
+                <div class="col-xs-12">
+                    <div class="user pull-right" >
+                        <div class="item dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user fa-3x"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right" >
+                                <li *ngIf="isLogin()" class="dropdown-header">
+                                    {{currentUser}} Menu
+                                </li>
+                                <li *ngIf="!isLogin()" class="dropdown-header">
+                                    User Menu
+                                </li>
+                                <li class="divider"></li>
+                                <li class="link">
+                                    <a href="javascript:void(0)">
+                                        Profile
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a href="javascript:void(0)">
+                                        My Widgets
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a href="javascript:void(0)">
+                                        Menu Item
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="link">
+                                    <a href="javascript:void(0)">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="item dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">
+                                    Notifications
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="javascript:void(0)">Se resetearon las cuotas</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="meta">
+                        <div class="page">
+                            Dashboard
+                        </div>
+                        <div class="breadcrumb-links">
+                            Home / Dashboard
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Header Bar -->
+
+            <!--&lt;!&ndash; Main Content &ndash;&gt;-->
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+            <!--<main-content></main-content>-->
+
+        </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+</div><!-- End Page Wrapper -->

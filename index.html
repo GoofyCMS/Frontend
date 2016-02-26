@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>Goofy Dashboard</title>
+
+    <base href="/">
+
+    <link rel="stylesheet" href="/app/libs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/app/libs/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/app/libs/css/rdash.css">
+
+    <script src="/app/libs/js/jquery.min.js"></script>
+    <script src="/app/libs/js/bootstrap.min.js"></script>
+
+    <!-- 1. Load libraries -->
+    <script src="/node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="/node_modules/systemjs/dist/system-polyfills.js"></script>
+
+    <!-- IE required polyfills, in this exact order -->
+    <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="/node_modules/systemjs/dist/system.src.js"></script>
+    <script src="/node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="/node_modules/angular2/bundles/router.dev.js"></script>
+    <script src="/node_modules/angular2/bundles/http.dev.js"></script>
+
+
+    <!-- 2. Configure SystemJS -->
+    <script>
+        System
+                .config({
+                    map: {
+                        'rxjs': 'node_modules/rxjs',
+                        defaultExtensions: 'js'
+                    },
+                    packages: {
+                        app: {
+                            format: 'register',
+                            defaultExtension: 'js'
+                        },
+                        'rxjs': {
+                            defaultExtension: 'js'
+                        }
+                    }
+                });
+        System
+                .import('/app/boot')
+                .then(null, console.error.bind(console));
+    </script>
+
+</head>
+
+<!-- 3. Display the application -->
+<body>
+<goofy-app>Loading...</goofy-app>
+</body>
+
+</html>

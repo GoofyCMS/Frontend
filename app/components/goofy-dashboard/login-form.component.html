@@ -1,0 +1,50 @@
+<h1>Login Form</h1>
+
+<div class="container-fluid">
+    <!--<div class="col m10 offset-m1 s12">-->
+        <div class="{{ alertClass }}" id="result_card" style="display: none">
+            <i class="tiny material-icons" *ngIf="frameworkCssAttr.toLowerCase() == 'materialize'">info_outline</i>
+            <i class="fa fa-info-circle" *ngIf="frameworkCssAttr.toLowerCase() == 'bootstrap'"></i>
+            <span class="grey-text text-darken-4" id="result"></span>
+        </div>
+        <div class="row">
+            <form [ngFormModel]="myForm" (ngSubmit)="sendLogin(myForm.value)" class="col s12" >
+                <div class="field">
+                    <div class="row" *ngIf="typeUsernameOrEmailAttr == 'email'">
+                        <label>{{ emailAttr }}</label><label *ngIf="email.hasError('required')"><span style="color: red"> (Required)</span></label>
+                        <div *ngIf="email.dirty && !email.valid">
+                            <label *ngIf="email.errors.invalidEmailAddress" style="color: red"> Invalid Email </label>
+                        </div>
+                        <input type="email" id="emailInput" class="{{ inputsClass }}" [ngFormControl]="email">
+                    </div>
+
+                    <div class="row" *ngIf="typeUsernameOrEmailAttr == 'username'">
+                        <label>{{ usernameAttr }}</label><label *ngIf="username.hasError('required')"><span style="color: red"> (Required)</span></label>
+                        <input type="text" id="usernameInput" class="{{ inputsClass }}" [ngFormControl]="username">
+                    </div>
+
+                    <div class="row">
+                        <label>{{ passwordAttr }}</label><label *ngIf="password.hasError('required')"><span style="color: red"> (Required)</span></label>
+                        <input type="password" id="passwordInput" class="{{ inputsClass }}" [ngFormControl]="password">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="pull-left spinner" style="display: none"  id="progress">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                    <div class="pull-left" style="margin-top: 5px">
+                        <input type="submit" [disabled]="!myForm.valid"
+                               class="{{ btnClass }}"
+                               name="action" value="{{ sendAttr }}" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    <!--</div>-->
+</div>
