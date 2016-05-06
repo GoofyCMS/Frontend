@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Server Name</th>
+            <th>IP Address</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#server of servers">
+            <td>{{server.name}}</td>
+            <td>{{server.ip}}</td>
+            <td>
+                <span>
+                <i class="fa {{server.icon}}"></i>
+            </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

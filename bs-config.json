@@ -1,0 +1,17 @@
+{
+    "port": 8000,
+    "ui": {
+        "port": 8001,
+        "weinre": {
+            "port": 8080
+        }
+    },
+    "files": [
+        "./app/**/*.{js}",
+        "./src/**/*.{css}",
+        "./templates/**/*.{html,htm}"
+    ],
+    "server": {
+        "baseDir": "./"
+    }
+}

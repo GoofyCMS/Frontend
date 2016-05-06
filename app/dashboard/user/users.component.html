@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Account</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor=" #user of users ">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.account}}</td>
+        </tr>
+    </tbody>
+</table>
