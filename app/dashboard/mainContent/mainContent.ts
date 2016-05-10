@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-// import {LogService} from "angular2-log/log";
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup} from "@angular/common";
 
 @Component({
@@ -50,15 +49,15 @@ export class MainContentComponent implements OnInit {
         `;
 
         this.myForm = this._fb.group({
-            'sku': ['ABC123']
+            "sku": ["ABC123"],
         });
     }
 
-    constructor( public _fb: FormBuilder) {
-       
+    constructor(public _fb: FormBuilder) {
+
     }
 
     onSubmit(value: string): void {
-        console.log('form value is: ', value);
+        console.log("form value is: ", value);
     }
 }
