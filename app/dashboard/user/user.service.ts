@@ -1,7 +1,7 @@
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {USERS} from "./mock-users";
 import {IUser} from "./user";
-import {Http, Response, Headers, RequestOptions} from "angular2/http";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/rx";
 
 
@@ -60,7 +60,7 @@ export class UserService {
     checkUser(name: string, password: string) {
         let result: IUser[] = [];
 
-        let obs = Observable.create(USERS)
+        let obs = Observable.from(USERS)
             .filter(u => u.name === name && u.password === password)
             .subscribe(res => result.push(res));
 

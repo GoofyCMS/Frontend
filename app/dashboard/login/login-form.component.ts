@@ -1,6 +1,5 @@
-"use strict";
-import { Component, ElementRef } from "angular2/core";
-import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators, AbstractControl } from "angular2/common";
+import { Component, ElementRef } from "@angular/core";
+import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators, AbstractControl } from "@angular/common";
 import { CustomValidators } from "./custom.validators";
 
 // import {IUser} from "../user/user";

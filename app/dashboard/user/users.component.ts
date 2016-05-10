@@ -1,6 +1,5 @@
-"use strict";
-import {Component, OnInit} from "angular2/core";
-import {Router} from "angular2/router";
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router-deprecated";
 import {UserService} from "./user.service";
 import {IUser} from "./user";
 
@@ -8,7 +7,7 @@ import {IUser} from "./user";
 @Component({
     selector: "users",
     templateUrl: "./app/dashboard/user/users.component.html",
-    providers: [UserService]
+    providers: [UserService],
 })
 
 export class UsersComponent implements OnInit {

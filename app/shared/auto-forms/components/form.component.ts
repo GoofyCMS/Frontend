@@ -1,10 +1,10 @@
-import {Component, OnInit, Input} from "angular2/core";
-import {ControlGroup, NgFormModel} from "angular2/common";
+import {Component, OnInit, Input} from "@angular/core";
+import {ControlGroup, NgFormModel} from "@angular/common";
 import {AutoFormsField} from "./field.component";
 import {ControlService} from "./../services/control.service";
 import {AutoFormsEventEmitter, AutoFormsSubject} from "./../services/event-emitter.service";
 import {AutoFormsBaseComponent} from "./base.component";
-import {implementsOnDestroy} from "angular2/src/core/change_detection/pipe_lifecycle_reflector";
+// import {implementsOnDestroy} from "angular2/src/core/change_detection/pipe_lifecycle_reflector";
 
 export class AutoFormsFormComponent extends AutoFormsBaseComponent implements OnInit {
 

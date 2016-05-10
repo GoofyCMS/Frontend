@@ -8,7 +8,7 @@ import {
     DynamicComponentLoader,
     ViewContainerRef,
     ViewChild,
-} from "angular2/core";
+} from "@angular/core";
 
 import {AutoFormsBaseComponent} from "./base.component";
 import {AutoFormsConfig} from "../services/config.service";
@@ -36,11 +36,11 @@ import {AutoFormsEventEmitter, AutoFormsSubject} from "../services/event-emitter
     directives: [AutoFormsField],
 })
 export class AutoFormsField extends AutoFormsBaseComponent implements OnInit, DoCheck {
-    @Input() model;
-    @Input() key;
-    @Input() form;
-    @Input() field;
-    @Input() eventEmitter;
+    @Input() model: any;
+    @Input() key: any;
+    @Input() form: any;
+    @Input() field: any;
+    @Input() eventEmitter: any;
 
     @Output() changeFn: EventEmitter<any> = new EventEmitter();
 

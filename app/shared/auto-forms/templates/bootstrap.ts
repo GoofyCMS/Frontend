@@ -1,7 +1,7 @@
 import {AutoFormsConfig} from "../services/config.service";
 import {AutoFormsMessages} from "../services/messages.service";
 import {TemplateDirectives} from "./templates";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class AutoFormsBootstrap {

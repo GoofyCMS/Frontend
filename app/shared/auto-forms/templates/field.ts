@@ -1,4 +1,4 @@
-import {Output, Input, EventEmitter, OnInit, ElementRef, AfterViewInit, AfterViewChecked} from "angular2/core";
+import {Output, Input, EventEmitter, OnInit, ElementRef, AfterViewInit, AfterViewChecked} from "@angular/core";
 import {AutoFormsMessages} from "./../services/messages.service.ts";
 import {AutoFormsSubject} from "./../services/event-emitter.service";
 

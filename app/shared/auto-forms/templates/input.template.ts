@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, AfterContentInit, AfterViewInit} from "angular2/core";
+import {Component, ElementRef, OnInit, AfterContentInit, AfterViewInit} from "@angular/core";
 import {AutoFormsMessages, AutoFormsMessage} from "./../services/messages.service.ts";
 import {AutoFormsSubject} from "./../services/event-emitter.service";
 import {Field} from "./field";

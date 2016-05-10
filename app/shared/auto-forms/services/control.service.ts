@@ -1,5 +1,5 @@
-import {Injectable} from "angular2/core";
-import {FormBuilder, RadioButtonState} from "angular2/common";
+import {Injectable} from "@angular/core";
+import {FormBuilder, RadioButtonState} from "@angular/common";
 import {FieldBase} from "./field.base";
 
 @Injectable()

@@ -1,13 +1,14 @@
-import {Component} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/common";
-import {RouteConfig, RouterLink, ROUTER_DIRECTIVES} from "angular2/router";
+import {Component} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
+import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
+import {RouteConfig, RouterLink} from "@angular/router-deprecated";
 import {MainContentComponent} from "./mainContent/mainContent";
 import {UsersComponent} from "./user/users.component";
 import {ServersComponent} from "./server/servers.component";
 import {LoginForm} from "./login/login-form.component";
-import {LogService} from "angular2-log/log";
+// import {LogService} from "angular2-log/log";
 import { MenuComponent } from "./menu/menu.component";
-import { Sidebar } from './sidebar/sidebar.component';
+import { Sidebar } from "./sidebar/sidebar.component";
 
 
 @Component({
@@ -22,7 +23,7 @@ import { Sidebar } from './sidebar/sidebar.component';
     { path: "/main", as: "Main", component: MainContentComponent, useAsDefault: true },
     { path: "/servers", as: "Servers", component: ServersComponent },
     { path: "/users", as: "Users", component: UsersComponent },
-    { path: "/**", redirectTo: ["Login"] }
+    { path: "/**", redirectTo: ["Login"] },
 ])
 
 export class GoofyDashboardComponent {
@@ -31,16 +32,12 @@ export class GoofyDashboardComponent {
     public currentUser: string = "Carola";
     public _isLogin: boolean = false;
 
-    constructor(public logService: LogService) {
+    constructor() {
 
     }
 
     private ngOnInit(): void {
-        this.logService.level = "debug";
-        this.logService.to("dashboard").debug("Your debug stuff");
-        this.logService.to("dashboard").info("An info");
-        this.logService.to("dashboard").warning("Take care ");
-        this.logService.to("dashboard").error("Too late !");
+      
     }
 
     public isLogin(): string {

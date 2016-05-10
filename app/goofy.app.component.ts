@@ -1,7 +1,7 @@
-import {Component} from "angular2/core";
-import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
+import {Component} from "@angular/core";
+import {RouteConfig, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {GoofyDashboardComponent} from "./dashboard/dashboard.component";
-import {LogService} from "angular2-log/log";
+// import {LogService} from "angular2-log/log";
 
 
 @Component({
@@ -15,6 +15,6 @@ import {LogService} from "angular2-log/log";
 ])
 
 export class GoofyAppComponent {
-    constructor(public logService: LogService) {
+    constructor() {
     }
 }

@@ -13,52 +13,22 @@
     <link rel="stylesheet" href="/app/assets/css/gd-main.css">
     
 
-    <script src="/app/assets/libs/primeui/jquery.js"></script>
-    <script src="/app/assets/libs/primeui/jquery-ui.js"></script>
-    <script src="/app/assets/libs/primeui/primeui.js"></script>
+    <!--<script src="/app/assets/libs/primeui/jquery.js"></script>-->
+    <!--<script src="/app/assets/libs/primeui/jquery-ui.js"></script>-->
+    <!--<script src="/app/assets/libs/primeui/primeui.js"></script>-->
     <!--<script src="/app/assets/libs/bootstrap/bootstrap.min.js"></script>-->
 
     <!-- 1. Load libraries -->
-    <script src="/node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="/node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
 
-    <!-- IE required polyfills, in this exact order -->
-    <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="/node_modules/systemjs/dist/system.src.js"></script>
-    <script src="/node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="/node_modules/angular2/bundles/router.dev.js"></script>
-    <script src="/node_modules/angular2/bundles/http.dev.js"></script>
-
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
 
     <!-- 2. Configure SystemJS -->
+    <script src="./system.js.config.js"></script>
     <script>
-        System
-                .config({
-                    defaultJSExtensions: true,
-                    map: {
-                        'rxjs': 'node_modules/rxjs',
-                        'angular2-log': 'node_modules/angular2-log',
-                        'primeng': 'node_modules/primeng',
-                        defaultExtensions: 'js'
-                    },
-                    packages: {
-                        app: {
-                            format: 'register',
-                            defaultExtension: 'js'
-                        },
-                        "angular2": {"defaultExtension": false},
-                        'angular2-log': {
-                            defaultExtension: 'js'  
-                        },
-                        'rxjs': {
-                            defaultExtension: 'js'
-                        }
-                    }
-                });
-        System
-                .import('/app/boot')
-                .then(null, console.error.bind(console));
+        System.import('app/boot').catch(function(err){ console.error(err);  });
     </script>
 
 </head>

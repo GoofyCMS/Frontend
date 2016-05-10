@@ -1,18 +1,18 @@
-import {Component, OnInit} from "angular2/core";
-import {LogService} from "angular2-log/log";
-import {FORM_DIRECTIVES,FormBuilder, ControlGroup} from "angular2/common";
+import {Component, OnInit} from "@angular/core";
+// import {LogService} from "angular2-log/log";
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup} from "@angular/common";
 
 @Component({
     selector: "main-content",
     templateUrl: "./app/dashboard/mainContent/mainContent.html",
     styleUrls: ["./app/dashboard/mainContent/mainContent.css"],
-    directives: [FORM_DIRECTIVES]
+    directives: [FORM_DIRECTIVES],
 })
 export class MainContentComponent implements OnInit {
-    private _formTest:string;
-    private myForm:ControlGroup;
+    private _formTest: string;
+    private myForm: ControlGroup;
 
-    ngOnInit():void {
+    ngOnInit(): void {
         this._formTest = `
              {
   "entities": {
@@ -54,11 +54,11 @@ export class MainContentComponent implements OnInit {
         });
     }
 
-    constructor(public logService:LogService, public _fb:FormBuilder) {
-        this.logService.to("mainContent").info("Loaded MainContent");
+    constructor( public _fb: FormBuilder) {
+       
     }
 
-    onSubmit(value:string):void {
+    onSubmit(value: string): void {
         console.log('form value is: ', value);
     }
 }

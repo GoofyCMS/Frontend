@@ -1,5 +1,5 @@
-import {Injectable, Component, Host, Input} from "angular2/core";
-import {NgFormModel, AbstractControl} from "angular2/common";
+import {Injectable, Component, Host, Input} from "@angular/core";
+import {NgFormModel, AbstractControl} from "@angular/common";
 
 @Injectable()
 export class AutoFormsMessages {
