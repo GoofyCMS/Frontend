@@ -3,8 +3,8 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup} from "@angular/common";
 
 @Component({
     selector: "main-content",
-    templateUrl: "./app/dashboard/mainContent/mainContent.html",
-    styleUrls: ["./app/dashboard/mainContent/mainContent.css"],
+    templateUrl: "./app/dashboard/base/mainContent/mainContent.html",
+    styleUrls: ["./app/dashboard/base/mainContent/mainContent.css"],
     directives: [FORM_DIRECTIVES],
 })
 export class MainContentComponent implements OnInit {

@@ -1,0 +1,17 @@
+.ui-grid-row {
+    margin-bottom: 5px;
+}
+
+.ui-inputtext {
+    height: 40px;
+    width: 100%;
+}
+
+.ui-button{
+    height: 40px;
+    width: 100%;
+}
+
+.ui-messages-icon {
+    content: "\f05a";
+}

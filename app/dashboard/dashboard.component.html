@@ -1,21 +1,23 @@
-<div class="gd-main ui-grid ui-grid-responsive">
-    <div class="ui-grid-row">
-        <div class="ui-grid-col-12">
-            <div class="gd-sidebar ui-grid-col-3">
-                <sidebar></sidebar>
-            </div>
-            <div class="gd-content ui-grid-col-9">
-                <div class="top-menu ui-grid-row">
-                    <div class="ui-grid-col-12">
-                        <menu></menu>
-                    </div>
-                </div>
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-12">
-                        <router-outlet></router-outlet>
-                    </div>
-                </div>
+<div class="PC">
+    <sidebar></sidebar>
+
+    <div id="CONTENTSIDE">
+        <div id="CONTENTSIDEindent">
+
+            <!--<menu></menu>-->
+
+            <div>
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>
+
+    <!-- footer start-->
+    <div class="ContentSideSections">
+        <span class="floatLeft fontSize14 gray"><a href="#">Goofy Dashboard</a>, Copyright &copy; 2016</span>
+        <span class="floatRight fontSize14 gray">All rights reserved</span>
+        <div style="clear:both"></div>
+    </div>
+    <!-- footer end-->
+    <!--</div>-->
 </div>

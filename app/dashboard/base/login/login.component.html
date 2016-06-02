@@ -1,0 +1,51 @@
+<div class="ContentSideSections">
+    <div class="ui-grid ui-grid-responsive">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <div *ngIf="authService.getUser()">
+                    Logged in as <b>{{ authService.getUser() }}</b>
+                    <a href (click)="logout()">Log out</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <div *ngIf="message">
+                    {{ message }}
+                </div>
+                <p-growl [value]="messages" [closable]="false"></p-growl>
+            </div>
+        </div>
+        <div *ngIf="!authService.getUser()">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3"></div>
+                <div class="ui-grid-col-6">
+                    <label for="login-username">Username</label>
+                    <input id="login-username" type="text" pInputText #lusername/>
+                </div>
+                <div class="ui-grid-col-3"></div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3"></div>
+                <div class="ui-grid-col-6">
+                    <label for="login-password">Password</label>
+                    <input id="login-password" type="password" pPassword #lpassword/>
+                </div>
+                <div class="ui-grid-col-3"></div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3"></div>
+                <div class="ui-grid-col-6">
+                    <button pButton type="button" label="Login"
+                            (click)="login(lusername.value, lpassword.value)"></button>
+                </div>
+                <div class="ui-grid-col-3"></div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+

@@ -15,8 +15,8 @@ declare var window: any;
 @Component({
     selector: "login-form",
     providers: [UserService],
-    templateUrl: "./app/dashboard/login/login-form.component.html",
-    styleUrls: ["./app/dashboard/login/login-form.component.css"],
+    templateUrl: "/login-form.component.html",
+    styleUrls: ["/login-form.component.css"],
     directives: [FORM_DIRECTIVES],
 })
 export class LoginForm {

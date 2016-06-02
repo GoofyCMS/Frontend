@@ -3,6 +3,7 @@ import {Field} from "./field";
 import {AutoFormsMessages} from "./../services/messages.service.ts";
 import {AutoFormsSubject} from "./../services/event-emitter.service";
 
+
 @Component({
     selector: "af-field-checkbox",
     template: `
@@ -18,9 +19,7 @@ import {AutoFormsSubject} from "./../services/event-emitter.service";
     `,
 })
 export class AutoFormsFieldCheckbox extends Field {
-
     constructor(afm: AutoFormsMessages, afs: AutoFormsSubject) {
         super(afm, afs);
     }
-
 }

@@ -1,14 +1,14 @@
 import {Component} from "@angular/core";
 import {CORE_DIRECTIVES} from "@angular/common";
-import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
-import {RouteConfig, RouterLink} from "@angular/router-deprecated";
-import {MainContentComponent} from "./mainContent/mainContent";
-import {UsersComponent} from "./user/users.component";
+import {ROUTER_DIRECTIVES, RouteConfig, RouterLink} from "@angular/router-deprecated";
+import {MainContentComponent} from "./base/mainContent/mainContent";
+import {UsersComponent} from "./base/user/users.component";
 import {ServersComponent} from "./server/servers.component";
-import {LoginForm} from "./login/login-form.component";
-// import {LogService} from "angular2-log/log";
-import { MenuComponent } from "./menu/menu.component";
-import { Sidebar } from "./sidebar/sidebar.component";
+import {LoginForm} from "./base/login/login-form.component";
+import {LoginComponent} from "./base/login/login.component";
+import {MenuComponent} from "./base/menu/menu.component";
+import {Sidebar} from "./base/sidebar/sidebar.component";
+import {PluginsComponent} from "./plugins/plugins.components";
 
 
 @Component({
@@ -19,36 +19,19 @@ import { Sidebar } from "./sidebar/sidebar.component";
     providers: [LoginForm],
 })
 @RouteConfig([
-    { path: "/login", as: "Login", component: LoginForm },
-    { path: "/main", as: "Main", component: MainContentComponent, useAsDefault: true },
-    { path: "/servers", as: "Servers", component: ServersComponent },
-    { path: "/users", as: "Users", component: UsersComponent },
-    { path: "/**", redirectTo: ["Login"] },
+    {path: "/login", as: "Login", component: LoginComponent, useAsDefault: true},
+    {path: "/main", as: "Main", component: MainContentComponent},
+    {path: "/servers", as: "Servers", component: ServersComponent},
+    {path: "/users", as: "Users", component: UsersComponent},
+    {path: "/plugins", as: "Plugins", component: PluginsComponent},
+    {path: "/**", redirectTo: ["Login"]},
 ])
 
 export class GoofyDashboardComponent {
     public toggle: boolean = true;
-    public mobileView: number = 992;
-    public currentUser: string = "Carola";
-    public _isLogin: boolean = false;
 
     constructor() {
 
     }
-
-    private ngOnInit(): void {
-      
-    }
-
-    public isLogin(): string {
-        if (localStorage.getItem("currentUser")) {
-            this.currentUser = localStorage.getItem("currentUser");
-            this._isLogin = true;
-        } else {
-            this._isLogin = false;
-        }
-        return localStorage.getItem("currentUser");
-    }
-
 
 }

@@ -3,8 +3,8 @@ import { Menubar } from "primeng/primeng";
 
 @Component({
     selector: "menu",
-    templateUrl: "./app/dashboard/menu/menu.component.html",
-    styleUrls: ["./app/dashboard/menu/menu.component.css"],
+    templateUrl: "./app/dashboard/base/menu/menu.component.html",
+    styleUrls: ["./app/dashboard/base/menu/menu.component.css"],
     directives: [Menubar],
 })
 export class MenuComponent {

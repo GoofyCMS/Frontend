@@ -6,7 +6,7 @@ import {IUser} from "./user";
 
 @Component({
     selector: "users",
-    templateUrl: "./app/dashboard/user/users.component.html",
+    templateUrl: "./app/dashboard/base/user/users.component.html",
     providers: [UserService],
 })
 
