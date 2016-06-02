@@ -3,7 +3,7 @@ import {CORE_DIRECTIVES} from "@angular/common";
 import {ROUTER_DIRECTIVES, RouteConfig, RouterLink} from "@angular/router-deprecated";
 import {MainContentComponent} from "./base/mainContent/mainContent";
 import {UsersComponent} from "./base/user/users.component";
-import {ServersComponent} from "./server/servers.component";
+import {ArticleListComponent} from "./plugins/blog/articles-list.component";
 import {LoginForm} from "./base/login/login-form.component";
 import {LoginComponent} from "./base/login/login.component";
 import {MenuComponent} from "./base/menu/menu.component";
@@ -21,12 +21,11 @@ import {PluginsComponent} from "./plugins/plugins.components";
 @RouteConfig([
     {path: "/login", as: "Login", component: LoginComponent, useAsDefault: true},
     {path: "/main", as: "Main", component: MainContentComponent},
-    {path: "/servers", as: "Servers", component: ServersComponent},
+    {path: "/articles", as: "ArticlesList", component: ArticleListComponent},
     {path: "/users", as: "Users", component: UsersComponent},
     {path: "/plugins", as: "Plugins", component: PluginsComponent},
     {path: "/**", redirectTo: ["Login"]},
 ])
-
 export class GoofyDashboardComponent {
     public toggle: boolean = true;
 

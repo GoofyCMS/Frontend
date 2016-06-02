@@ -27,39 +27,39 @@
             <a class="SubMenuLink" [routerLink]="['Main']" (click)="mobileMenuActive = false">&#9679; Homepage</a>
         </div>
 
-        <span id="menu_users"
-              #usersmenutitle
-              class="MenuSideMainLink bordersOfMenuSide"
-              [class.MenuSideMainLinkDark]="usersmenutitle.id == activeMenuId"
-              (click)="activeMenuId = usersmenutitle.id">
-              <!--<img src="showcase/resources/images/mono/panel.svg" />-->
-            <!--<img class="hiddenIcons" src="showcase/resources/images/mono/panelBlue.svg" />-->
-              <i class="fa fa-users"></i>
-            <span class="MainLinkText">Users</span>
-        </span>
-        <div class="SubMenuLinkContainer"
-             [ngClass]="{'submenushow': (usersmenutitle.id == activeMenuId), 'submenuhide': (usersmenutitle.id != activeMenuId)}">
-            <a class="SubMenuLink"
-               [routerLink]="['Users']"
-               (click)="mobileMenuActive = false">&#9679; Users</a>
-        </div>
-
-        <!--<span id="menu_servers"-->
-              <!--#serversmenutitle-->
+        <!--<span id="menu_users"-->
+              <!--#usersmenutitle-->
               <!--class="MenuSideMainLink bordersOfMenuSide"-->
-              <!--[class.MenuSideMainLinkDark]="serversmenutitle.id == activeMenuId"-->
-              <!--(click)="activeMenuId = serversmenutitle.id">-->
+              <!--[class.MenuSideMainLinkDark]="usersmenutitle.id == activeMenuId"-->
+              <!--(click)="activeMenuId = usersmenutitle.id">-->
               <!--&lt;!&ndash;<img src="showcase/resources/images/mono/panel.svg" />&ndash;&gt;-->
-              <!--&lt;!&ndash;<img class="hiddenIcons" src="showcase/resources/images/mono/panelBlue.svg" />&ndash;&gt;-->
-              <!--<i class="fa fa-server"></i>-->
-              <!--<span class="MainLinkText">Servers</span>-->
+            <!--&lt;!&ndash;<img class="hiddenIcons" src="showcase/resources/images/mono/panelBlue.svg" />&ndash;&gt;-->
+              <!--<i class="fa fa-users"></i>-->
+            <!--<span class="MainLinkText">Users</span>-->
         <!--</span>-->
         <!--<div class="SubMenuLinkContainer"-->
-             <!--[ngClass]="{'submenushow': (serversmenutitle.id == activeMenuId), 'submenuhide': (serversmenutitle.id != activeMenuId)}">-->
+             <!--[ngClass]="{'submenushow': (usersmenutitle.id == activeMenuId), 'submenuhide': (usersmenutitle.id != activeMenuId)}">-->
             <!--<a class="SubMenuLink"-->
-               <!--[routerLink]="['Servers']"-->
-               <!--(click)="mobileMenuActive = false">&#9679; Servers</a>-->
+               <!--[routerLink]="['Users']"-->
+               <!--(click)="mobileMenuActive = false">&#9679; Users</a>-->
         <!--</div>-->
+
+        <span id="menu_blog"
+              #blogmenutitle
+              class="MenuSideMainLink bordersOfMenuSide"
+              [class.MenuSideMainLinkDark]="blogmenutitle.id == activeMenuId"
+              (click)="activeMenuId = blogmenutitle.id">
+              <!--<img src="showcase/resources/images/mono/panel.svg" />-->
+              <!--<img class="hiddenIcons" src="showcase/resources/images/mono/panelBlue.svg" />-->
+              <i class="fa fa-server"></i>
+              <span class="MainLinkText">Blog</span>
+        </span>
+        <div class="SubMenuLinkContainer"
+             [ngClass]="{'submenushow': (blogmenutitle.id == activeMenuId), 'submenuhide': (blogmenutitle.id != activeMenuId)}">
+            <a class="SubMenuLink"
+               [routerLink]="['ArticlesList']"
+               (click)="mobileMenuActive = false">Articles</a>
+        </div>
 
 
         <span id="menu_plugins"

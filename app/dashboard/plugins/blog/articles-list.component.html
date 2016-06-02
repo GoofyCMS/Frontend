@@ -1,0 +1,36 @@
+<div class="ContentSideSections">
+    <table>
+        <tr>
+            <td><h3 class="first">Articles</h3></td>
+
+        </tr>
+        <tr>
+            <td class="right-align">
+                <button pButton type="button" label="Add New"></button>
+            </td>
+        </tr>
+    </table>
+
+    <table class="doc-table">
+        <thead>
+        <tr class="text-center">
+            <th>Title</th>
+            <th>Author</th>
+            <th>Created Date</th>
+            <th>Text</th>
+            <th>State</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let article of _articles, let i = index">
+            <td>{{article.title}}</td>
+            <td>{{article.author}}</td>
+            <td>{{article.createdDate}}</td>
+            <td>{{article.text | slice:0:50 }} <span *ngIf="article.text.length > 50"> ... </span></td>
+            <td>
+                <p-inputSwitch [(ngModel)]="article.show"></p-inputSwitch>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
