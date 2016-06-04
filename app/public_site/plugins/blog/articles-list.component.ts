@@ -6,6 +6,7 @@ import {InputSwitch, Button} from "primeng/primeng";
 @Component({
     selector: "articles-list",
     templateUrl: "./app/public_site/plugins/blog/articles-list.component.html",
+    styleUrls:["./app/public_site/plugins/blog/articles-list.component.css"],
     directives: [InputSwitch, Button],
     providers: [ArticleService],
 })

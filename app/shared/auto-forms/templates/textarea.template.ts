@@ -5,28 +5,20 @@ import {Field} from "./field";
 @Component({
     selector: "af-field-textarea",
     template: `
-    <fieldset class="form-group" [ngFormModel]="form">
-        <label attr.for="{{key}}">{{options.label}}</label>
-        <textarea 
-            name="{{key}}" 
-            [ngControl]="key" 
-            id="{{key}}" 
-            cols="{{options.cols}}" 
-            rows="{{options.rows}}" 
-            (change)="inputChange($event, 'value')" 
-            (keyup)="inputChange($event, 'value')" 
-            placeholder="{{options.placeholder}}" 
-            class="form-control">
-        </textarea>
-        <small class="text-muted">{{options.description}}</small>
-    </fieldset>`,
+      <fieldset class="form-group" [ngFormModel]="form" *ngIf="!templateOptions.hidden">
+      <label attr.for="{{key}}" class="form-control-label">{{templateOptions.label}}</label>
+      <textarea name="{{key}}" [ngControl]="key" id="{{key}}" cols="{{templateOptions.cols}}"
+        rows="{{templateOptions.rows}}" (change)="inputChange($event, 'value')" (keyup)="inputChange($event, 'value')"
+        placeholder="{{templateOptions.placeholder}}" class="form-control" [disabled]="templateOptions.disabled"></textarea>
+      <small class="text-muted">{{templateOptions.description}}</small>
+    </fieldset>`
 })
 export class AutoFormsFieldTextArea extends Field implements AfterViewInit {
-    constructor(afm: AutoFormsMessages, afs: AutoFormsSubject, private  elem: ElementRef) {
-        super(afm, afs);
+    constructor(afm: AutoFormsMessages, afps: AutoFormsSubject, private  elem: ElementRef) {
+        super(afm, afps);
     }
     ngAfterViewInit(): void {
-        if (this.options.focus) {
+        if (this.templateOptions.focus) {
             this.elem.nativeElement.querySelector("textarea").focus();
         }
     }

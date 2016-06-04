@@ -1,9 +1,11 @@
 import {provide} from "@angular/core";
 import {bootstrap} from "@angular/platform-browser-dynamic";
-import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
+
 import {HTTP_PROVIDERS} from "@angular/http";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/observable";
+import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
+import {enableProdMode} from '@angular/core';
 
 import {GoofyAppComponent} from "./goofy.app.component";
 import {AUTH_PROVIDERS} from "./dashboard/base/login/auth.service";
@@ -14,6 +16,8 @@ import {UnitOfWorkFactory} from "./shared/services/unitofwork";
 import {Security} from "./shared/services/security";
 import {HttpService} from "./shared/services/http-service";
 import {Logger} from "./shared/resources/logger";
+import {AutoFormsBootstrap} from "./shared/auto-forms/templates/bootstrap";
+import {AutoFormsProviders} from "./shared/auto-forms/services/providers.service";
 
 
 // Angular-Breeze Q polyfill
@@ -73,6 +77,7 @@ factory.configure(modules)
             HTTP_PROVIDERS,
             ROUTER_PROVIDERS,
             AUTH_PROVIDERS,
+            AutoFormsBootstrap, AutoFormsProviders,
             provide(Logger, {useValue: logger}),
             provide(UnitOfWorkFactory, {useValue: factory}),
             provide(EventAggregator, {useValue: new EventAggregator()}),

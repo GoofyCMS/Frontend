@@ -1,5 +1,5 @@
 import {Injectable, Component, Host, Input} from "@angular/core";
-import {NgFormModel, AbstractControl} from "@angular/common";
+import {NgFormModel} from "@angular/common";
 
 @Injectable()
 export class AutoFormsMessages {
@@ -32,7 +32,7 @@ export class AutoFormsMessage {
     }
 
     get errorMessage(): any {
-        let c: AbstractControl = this._formDir.form.find(this._control);
+        let c = this._formDir.form.find(this._control);
 
         for (let propertyName in c.errors) {
             if (c.errors.hasOwnProperty(propertyName)) {
@@ -40,6 +40,6 @@ export class AutoFormsMessage {
             }
         }
 
-        return undefined;
+        return null;
     }
 }

@@ -1,26 +1,21 @@
-<div class="ContentSideSections">
-    <h3 class="first">Articles</h3>
+<div class="ContentSideSections" xmlns="http://www.w3.org/1999/html">
+    <h2 class="first">Articles</h2>
+    <hr>
 
-    <table class="doc-table">
-        <thead>
-        <tr class="text-center">
-            <th>Title</th>
-            <th>Author</th>
-            <th>Created Date</th>
-            <th>Text</th>
-            <th>State</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let article of _articles, let i = index">
-            <td>{{article.title}}</td>
-            <td>{{article.author}}</td>
-            <td>{{article.createdDate}}</td>
-            <td>{{article.text | slice:0:50 }} <span *ngIf="article.text.length > 50"> ... </span></td>
-            <td>
-                <p-inputSwitch [(ngModel)]="article.show"></p-inputSwitch>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
+    <div class="ArticleSection" *ngFor="let article of _articles">
+        <div class="ArticleSectionTitle">
+            {{article.title}}
+        </div>
+        <div class="ArticleSectionInfo">
+            Published <strong>{{article.createdDate}}</strong> by <strong>{{article.author}}</strong>
+        </div>
+        <div class="ArticleSectionContent">
+            {{article.text | slice:0:200 }}<span *ngIf="article.text.length > 50"> ... </span><br></div>
+        <div class="ArticleSectionReadMore" *ngIf="article.text.length > 50">
+            <button pButton="button" label="Read More..."></button>
+        </div>
+    </div>
+
+
 </div>

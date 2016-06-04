@@ -13,6 +13,7 @@ import {PublicSiteComponent} from "./public_site/public_site.component";
     { path: "/...", as: "GoofyPublicSite", component: PublicSiteComponent, useAsDefault: true },
     { path: "/dashboard/...", as: "GoofyDashboard", component: GoofyDashboardComponent},
 ])
+
 export class GoofyAppComponent {
     constructor() {
     }

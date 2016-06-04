@@ -11,7 +11,7 @@ import {ArticleListComponent} from "./plugins/blog/articles-list.component";
     selector: "public-site",
     styleUrls: ["./app/public_site/public_site.component.css"],
     templateUrl: "./app/public_site/public_site.component.html",
-    directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, RouterLink, NavbarComponent],
+    directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, NavbarComponent],
 })
 @RouteConfig([
     {path: "/", as: "Home", component: HomeComponent, useAsDefault: true},

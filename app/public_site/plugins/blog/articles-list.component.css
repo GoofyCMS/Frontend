@@ -1,0 +1,37 @@
+.ArticleSection {
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.ArticleSectionTitle {
+    border-radius: 5px;
+    background-color: #25AAE1;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Roboto;
+}
+
+.ArticleSectionContent {
+    padding: 5px;
+}
+.ArticleSectionInfo{
+    font-style: italic;
+    font-size: 14px;
+    padding: 2px 0 2px 5px;
+}
+
+.ArticleSectionInfo > hr {
+    max-width: 80%;
+}
+
+.ArticleSectionReadMore{
+    text-align: right;
+    padding: 5px;
+}
+
+.ArticleSectionReadMore.ui-button {
+    background-color: #000;
+    font-family: Roboto;
+
+}

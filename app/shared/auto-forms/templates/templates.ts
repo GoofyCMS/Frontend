@@ -3,6 +3,7 @@ import {AutoFormsFieldCheckbox} from "./checkbox.template";
 import {AutoFormsFieldRadio} from "./radio.template";
 import {AutoFormsFieldSelect} from "./select.template";
 import {AutoFormsFieldTextArea} from "./textarea.template";
+import {AutoFormsFieldMultiCheckbox} from "./multicheckbox.template";
 
 export const TemplateDirectives = {
     input: AutoFormsFieldInput,

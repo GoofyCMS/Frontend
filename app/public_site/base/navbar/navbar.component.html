@@ -1,1 +1,23 @@
-<p-menu [model]="items"></p-menu>
+<div class="DashboardHeader">
+    <div class="DashboardHeaderInner">
+        <div class="DashboardHeaderItem floatLeft">
+            <a [routerLink]="['GoofyPublicSite']">
+                <img src="./app/assets/images/logo.png" alt="Goofy Framework">
+                 <div></div>
+            </a>
+        </div>
+
+        <div class="DashboardHeaderItem floatRight">
+            <a [routerLink]="['GoofyDashboard']">
+                <i class="fa fa-dashboard fa-3x"></i>
+                Dashboard
+            </a>
+        </div>
+        <div class="DashboardHeaderItem floatRight">
+            <a [routerLink]="['ArticlesList']">
+                <i class="fa fa-file fa-3x"></i>
+                Articles
+            </a>
+        </div>
+    </div>
+</div>

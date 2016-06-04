@@ -1,3 +1,41 @@
 <div class="ContentSideSections">
     <h1>Welcome to Goofy Public Site</h1>
+
+
+    <h1>NG2-formly example: Introduction</h1>
+    <p>This is a small subset of the things that formly can do :-) See the other examples and the documentation for
+        more.</p>
+    <hr>
+    <af-form [model]="user" [fields]="userFields" (formSubmit)="console($event)" [form]="form">
+        <button type="submit" class="btn btn-primary" (click)="submit(user)">Button</button>
+    </af-form>
+    <hr>
+    <h3>Outside Formly</h3>
+    <input type="text" [(ngModel)]="user.email" (keyup)="changeEmail()" class="form-control">
+    <br><strong>FORM DATA:</strong><br>
+    <pre>{{user | json}}</pre>
+    <br>
+    <hr>
+    <button (click)="showEmail()" class="btn btn-success">Change Email</button>
+    <button (click)="hide()" class="btn btn-info">Hide Expression Toggle</button>
+
+
+    <div style="margin-top:30px">
+        <small>
+            This is an example for the
+            <a href="https://formly-js.github.io/ng2-formly">ng2-formly</a>
+            project made with ♥ by
+            <strong>
+            <span *ngIf="!author.name || !author.url">
+                {{author.name || 'anonymous'}}
+            </span>
+                <a *ngIf="author.url" href="{{author.url}}">
+                    {{author.name}}
+                </a>
+            </strong>
+            <br/>
+            This example is running angular version "{{env.angularVersion}}" and formly version "{{env.formlyVersion}}"
+        </small>
+    </div>
+
 </div>
