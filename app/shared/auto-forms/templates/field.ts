@@ -16,10 +16,10 @@ export class Field implements OnInit {
 
     @Output() changeFn: EventEmitter<any> = new EventEmitter();
 
-    private _messages;
+    _messages;
     _control: AbstractControl;
 
-    constructor(afm: AutoFormsMessages, private afps: AutoFormsSubject) {
+    constructor(afm: AutoFormsMessages, public afps: AutoFormsSubject) {
         this._messages = afm.getMessages();
         this.afps.Stream.subscribe(form => {
             this.form = form;

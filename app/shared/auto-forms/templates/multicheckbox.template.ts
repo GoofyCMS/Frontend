@@ -25,7 +25,7 @@ export class AutoFormsFieldMultiCheckbox extends Field {
 
     @Input() model: Object;
 
-    constructor(afm: AutoFormsMessages, private afps: AutoFormsSubject, private formBuilder: FormBuilder) {
+    constructor(afm: AutoFormsMessages, afps: AutoFormsSubject, private formBuilder: FormBuilder) {
         super(afm, afps);
     }
 

@@ -26,5 +26,5 @@ export class AuthService {
 }
 
 export var AUTH_PROVIDERS: Array<any> = [
-    provide(AuthService, {userClass: AuthService}),
+    provide(AuthService, {useClass: AuthService}),
 ];

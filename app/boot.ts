@@ -1,3 +1,4 @@
+/// <reference path="../typings/breeze/breeze.d.ts" />
 import {provide} from "@angular/core";
 import {bootstrap} from "@angular/platform-browser-dynamic";
 
@@ -13,7 +14,7 @@ import {AUTH_PROVIDERS} from "./dashboard/base/login/auth.service";
 
 import {EventAggregator} from "./shared/services/event-aggregator";
 import {UnitOfWorkFactory} from "./shared/services/unitofwork";
-import {Security} from "./shared/services/security";
+// import {Security} from "./shared/services/security";
 import {HttpService} from "./shared/services/http-service";
 import {Logger} from "./shared/resources/logger";
 import {AutoFormsBootstrap} from "./shared/auto-forms/templates/bootstrap";
@@ -62,7 +63,7 @@ import {AutoFormsProviders} from "./shared/auto-forms/services/providers.service
 })(breeze);
 
 
-let modules: string[] = [""];
+let modules: string[] = ["plugins", ];
 let eventAggregator: EventAggregator = new EventAggregator();
 let logger: Logger = new Logger();
 logger.logInfo(null, "Get metadata from modules", modules, this);
@@ -82,7 +83,6 @@ factory.configure(modules)
             provide(UnitOfWorkFactory, {useValue: factory}),
             provide(EventAggregator, {useValue: new EventAggregator()}),
             HttpService,
-            Security,
         ];
         for (var module of modules) {
             providers.push(provide(module + ".UnitOfWork", {

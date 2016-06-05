@@ -6,7 +6,7 @@ export {AutoFormsFormComponent} from "./components/form.component";
 export {AutoFormsConfig} from "./services/config.service";
 export {AutoFormsSubject, AutoFormsEventEmitter} from "./services/event-emitter.service";
 export {AutoFormsMessage, AutoFormsMessages} from "./services/messages.service";
-export {FormlyFieldVisibilityDelegate} from "./services/field.delegates";
+export {AutoFormsFieldVisibilityDelegate} from "./services/field.delegates";
 export {AutoFormsProviders} from "./services/providers.service";
 export {FormlyConfigProcessor} from "./services/processor";
 

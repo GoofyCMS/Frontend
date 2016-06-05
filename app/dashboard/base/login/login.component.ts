@@ -17,7 +17,7 @@ export class LoginComponent {
         this.messages = [];
     }
 
-    addMessage(messages: Message[], severity: string, summary: string, detail: string, timer?: number = 2500): void {
+    addMessage(messages: Message[], severity: string, summary: string, detail: string, timer: number = 2500): void {
         messages.push({severity: severity, summary: summary, detail: detail});
 
         setTimeout(function () {

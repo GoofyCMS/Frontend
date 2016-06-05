@@ -6,6 +6,7 @@ import {HomeComponent} from "./base/home/home.component";
 
 
 import {ArticleListComponent} from "./plugins/blog/articles-list.component";
+import {BreezeTest} from "./base/home/breezetest";
 
 @Component({
     selector: "public-site",
@@ -14,7 +15,7 @@ import {ArticleListComponent} from "./plugins/blog/articles-list.component";
     directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, NavbarComponent],
 })
 @RouteConfig([
-    {path: "/", as: "Home", component: HomeComponent, useAsDefault: true},
+    {path: "/", as: "Home", component: BreezeTest, useAsDefault: true},
     {path: "/articles", as: "ArticlesList", component: ArticleListComponent},
     {path: "/dashboard/**", redirectTo: ["GoofyDashboard"]},
     {path: "/**", redirectTo: ["Home"]},
