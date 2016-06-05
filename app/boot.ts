@@ -63,7 +63,7 @@ import {AutoFormsProviders} from "./shared/auto-forms/services/providers.service
 })(breeze);
 
 
-let modules: string[] = ["plugins", ];
+let modules: string[] = ["", ];
 let eventAggregator: EventAggregator = new EventAggregator();
 let logger: Logger = new Logger();
 logger.logInfo(null, "Get metadata from modules", modules, this);
