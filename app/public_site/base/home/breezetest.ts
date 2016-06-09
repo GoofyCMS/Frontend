@@ -3,6 +3,7 @@ import {Router} from "@angular/router-deprecated";
 import {UnitOfWork, UnitOfWorkFactory} from "../../../shared/services/unitofwork";
 import {EventAggregator} from "../../../shared/services/event-aggregator";
 import {Logger} from "../../../shared/resources/logger";
+import {Repository} from "../../../shared/services/repository";
 
 
 @Component({
@@ -18,28 +19,37 @@ export class BreezeTest {
     constructor(@Inject(Logger) logger: Logger,
                 @Inject(EventAggregator) private eventAggregator: EventAggregator,
                 @Inject(UnitOfWorkFactory) uowf: UnitOfWorkFactory,
-                @Inject('.UnitOfWork') uow: UnitOfWork) {
+                @Inject("plugins.UnitOfWork") uow: UnitOfWork) {
 
+        let modules = [];
+        let context;
+        let blogs;
+        let plugins;
 
-        let modules = ['plugins', 'blog'];
+        // uowf.configure(modules)
+        //     .then(response => {
+        //
+        //         logger.logInfo("Success", "Modules in component breezetest loaded", response, uowf);
+        //         //
+        //         // for (var module of modules) {
+        //         //     context = uowf.getContext(module);
+        //         //     logger.logInfo("Getting Context", module + " data", context, this, true);
+        //         // }
+        //
+        //         logger.logInfo("Getting Context", plugins + " data", uow, this, true);
+        //         // blogs = context.getRepository('ArticleItem');
+        //         // logger.logInfo("Getting Repository", "Article data", blogs, this, true);
+        //
+        //
+        //
+        //
+        //         // (<Repository>blogs).getAll();
+        //     })
+        //
+        //     .catch(error => logger.logError("Error!", "Error Loading Modules", error, this, true));
 
-        uowf.configure(modules)
-            .then(response => {
-
-                logger.logInfo("Success", "Modules loaded", response, uowf);
-                let t: any;
-                for (var module of modules) {
-                    t = uowf.getContext(module);
-                    logger.logInfo("Getting Context", module + " data", t, this, true);
-                }
-
-            })
-            .catch(error => logger.logError("Error!", "Error Loading Modules", error, this, true));
-
-        let a: any = uow.getRepository('plugins' + "Item");
-        logger.logInfo("Getting Repository", "Plugins data", a, this, true);
-        let b: any = uow.getRepository('blog' + "Item");
-        logger.logInfo("Getting Repository", "Blog data", b, this, true);
-
+        plugins = uow.getRepository("PluginItem");
+        logger.logInfo("Getting Repository", "Plugins data", plugins, this, true);
+        (<Repository>plugins).getAll();
     }
 }

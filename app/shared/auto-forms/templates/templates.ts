@@ -1,14 +1,17 @@
-import {AutoFormsFieldInput} from "./input.template";
-import {AutoFormsFieldCheckbox} from "./checkbox.template";
-import {AutoFormsFieldRadio} from "./radio.template";
-import {AutoFormsFieldSelect} from "./select.template";
-import {AutoFormsFieldTextArea} from "./textarea.template";
-import {AutoFormsFieldMultiCheckbox} from "./multicheckbox.template";
+import {FormlyFieldInput} from "./formlyfield.input";
+import {FormlyFieldCheckbox} from "./formlyfield.checkbox";
+import {FormlyFieldRadio} from "./formlyfield.radio";
+import {FormlyFieldSelect} from "./formlyfield.select";
+import {FormlyFieldTextArea} from "./formlyfield.textarea";
+import {FormlyFieldMultiCheckbox} from "./formlyfield.multicheckbox";
+import {FormlyFieldToggle} from "./formlyfield.toggle";
 
 export const TemplateDirectives = {
-    input: AutoFormsFieldInput,
-    checkbox: AutoFormsFieldCheckbox,
-    radio: AutoFormsFieldRadio,
-    select: AutoFormsFieldSelect,
-    textarea: AutoFormsFieldTextArea,
+    input: FormlyFieldInput,
+    checkbox: FormlyFieldCheckbox,
+    radio: FormlyFieldRadio,
+    select: FormlyFieldSelect,
+    textarea: FormlyFieldTextArea,
+    multicheckbox: FormlyFieldMultiCheckbox,
+    toggle: FormlyFieldToggle
 };

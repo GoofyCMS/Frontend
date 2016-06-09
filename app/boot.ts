@@ -17,8 +17,8 @@ import {UnitOfWorkFactory} from "./shared/services/unitofwork";
 // import {Security} from "./shared/services/security";
 import {HttpService} from "./shared/services/http-service";
 import {Logger} from "./shared/resources/logger";
-import {AutoFormsBootstrap} from "./shared/auto-forms/templates/bootstrap";
-import {AutoFormsProviders} from "./shared/auto-forms/services/providers.service";
+import {FormlyProviders} from "./shared/auto-forms/services/formly.providers";
+import {FormlyBootstrap} from "./shared/auto-forms/templates/formlyBootstrap";
 
 
 // Angular-Breeze Q polyfill
@@ -63,7 +63,7 @@ import {AutoFormsProviders} from "./shared/auto-forms/services/providers.service
 })(breeze);
 
 
-let modules: string[] = ["", ];
+let modules: string[] = [ ];
 let eventAggregator: EventAggregator = new EventAggregator();
 let logger: Logger = new Logger();
 logger.logInfo(null, "Get metadata from modules", modules, this);
@@ -78,11 +78,11 @@ factory.configure(modules)
             HTTP_PROVIDERS,
             ROUTER_PROVIDERS,
             AUTH_PROVIDERS,
-            AutoFormsBootstrap, AutoFormsProviders,
             provide(Logger, {useValue: logger}),
             provide(UnitOfWorkFactory, {useValue: factory}),
             provide(EventAggregator, {useValue: new EventAggregator()}),
             HttpService,
+            FormlyBootstrap, FormlyProviders
         ];
         for (var module of modules) {
             providers.push(provide(module + ".UnitOfWork", {
