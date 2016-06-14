@@ -8,12 +8,16 @@
             <td class="right-align">
                 <button pButton type="button" label="Add New"></button>
             </td>
+            <td class="right-align">
+                <button pButton type="button" label="Remove Selecteds"></button>
+            </td>
         </tr>
     </table>
 
     <table class="doc-table">
         <thead>
         <tr class="text-center">
+            <th></th>
             <th>ID</th>
             <!--<th>Author</th>-->
             <!--<th>Created Date</th>-->
@@ -23,12 +27,13 @@
         </thead>
         <tbody>
         <tr *ngFor="let article of _articles, let i = index">
+            <td><input type="checkbox" name="articlesChoose" [(ngModel)]="_listToRemove" (onSelect)="changeInput($event, article.id)"></td>
             <td>{{article.id}}</td>
             <td>{{article.content}}</td>
             <!--<td>{{article.createdDate}}</td>-->
             <!--<td>{{article.text | slice:0:50 }} <span *ngIf="article.text.length > 50"> ... </span></td>-->
             <!--<td>-->
-                <!--<p-inputSwitch [(ngModel)]="article.show"></p-inputSwitch>-->
+            <!--<p-inputSwitch [(ngModel)]="article.show"></p-inputSwitch>-->
             <!--</td>-->
         </tr>
         </tbody>

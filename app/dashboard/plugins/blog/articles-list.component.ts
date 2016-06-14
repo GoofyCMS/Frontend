@@ -1,12 +1,12 @@
 import {Component, OnInit} from "@angular/core";
 import {ArticleService} from "./article.service";
 import {IArticle} from "../../../shared/models/article";
-import {InputSwitch, Button} from "primeng/primeng";
+import {InputSwitch, Button, DataList} from "primeng/primeng";
 
 @Component({
     selector: "articles-list",
     templateUrl: "./app/dashboard/plugins/blog/articles-list.component.html",
-    directives: [InputSwitch, Button],
+    directives: [InputSwitch, Button,DataList],
     providers: [ArticleService],
 })
 
@@ -27,12 +27,14 @@ export class ArticleListComponent implements OnInit {
                 }
             );
     }
-
-    public getArticle(id: number) {
-        return this._articleService.getArticle(id);
+    public _listToRemove: number[];
+    public changeInput(e, id){
+    //     if(_listToRemove.contains())
     }
 
+
     ngOnInit(): void {
+        this._listToRemove = [];
         this.getArticles();
     }
 }
