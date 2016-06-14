@@ -4,7 +4,6 @@ import {ROUTER_DIRECTIVES, RouteConfig, RouterLink} from "@angular/router-deprec
 import {MainContentComponent} from "./base/mainContent/mainContent";
 import {UsersComponent} from "./base/user/users.component";
 import {ArticleListComponent} from "./plugins/blog/articles-list.component";
-import {LoginForm} from "./base/login/login-form.component";
 import {LoginComponent} from "./base/login/login.component";
 import {MenuComponent} from "./base/menu/menu.component";
 import {Sidebar} from "./base/sidebar/sidebar.component";
@@ -16,7 +15,6 @@ import {PluginsComponent} from "./plugins/plugins.components";
     styleUrls: ["./app/dashboard/dashboard.component.css"],
     templateUrl: "./app/dashboard/dashboard.component.html",
     directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, RouterLink, MenuComponent, Sidebar],
-    providers: [LoginForm],
 })
 @RouteConfig([
     {path: "/login", as: "Login", component: LoginComponent, useAsDefault: true},

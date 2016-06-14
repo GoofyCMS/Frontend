@@ -2,7 +2,7 @@ import {Component, ElementRef, AfterViewInit} from "@angular/core";
 import {FormlyMessages, FormlyMessage} from "./../services/formly.messages";
 import {FormlyPubSub} from "./../services/formly.event.emitter";
 import {Field} from "./field";
-import {InputText, Password, Spinner} from "primeng/primeng";
+import {InputText, Spinner} from "primeng/primeng";
 
 
 @Component({
@@ -14,15 +14,13 @@ import {InputText, Password, Spinner} from "primeng/primeng";
             </div>
             <div class="ui-grid-col-11" [ngSwitch]="templateOptions.type">
                 <input  *ngSwitchWhen="'password'"
-                    type="text"
-                    pPassword
+                    type="password"
+                    pInputText
                     [ngControl]="key" 
                     class="" 
                     id="{{key}}"
                     placeholder="{{templateOptions.placeholder}}" 
                     [disabled]="templateOptions.disabled"
-                    (keyup)="inputChange($event, 'value')" 
-                    (change)="inputChange($event, 'value')" 
                     [(ngModel)]="model"
                     [ngClass]="{'form-control-danger': !form.controls[key].valid}">
                 <p-spinner *ngSwitchWhen="'number'"
@@ -54,7 +52,7 @@ import {InputText, Password, Spinner} from "primeng/primeng";
             </div>
         </div>
     `,
-    directives: [FormlyMessage, InputText, Password, Spinner],
+    directives: [FormlyMessage, InputText, Spinner],
     inputs: ["form", "update", "templateOptions", "key", "field", "formModel", "model"]
 })
 export class FormlyFieldInput extends Field implements AfterViewInit {

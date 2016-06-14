@@ -32,7 +32,7 @@ import {RadioButton} from "primeng/primeng";
 export class FormlyFieldRadio extends Field {
     // val: string;
 
-    constructor(fm: FormlyMessages, private ps: FormlyPubSub, private formBuilder: FormBuilder) {
+    constructor(fm: FormlyMessages, ps: FormlyPubSub, private formBuilder: FormBuilder) {
         super(fm, ps);
         // this.val = "Mr.";
     }

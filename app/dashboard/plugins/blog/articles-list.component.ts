@@ -19,8 +19,13 @@ export class ArticleListComponent implements OnInit {
     public getArticles(): void {
         this._articles = [];
 
+        this._articles = [];
         this._articleService.getArticles()
-            .subscribe(s => this._articles.push(s));
+            .then(
+                s=> {
+                    this._articles = s.results;
+                }
+            );
     }
 
     public getArticle(id: number) {

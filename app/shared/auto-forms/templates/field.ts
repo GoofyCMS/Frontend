@@ -54,7 +54,7 @@ export class Field implements OnInit {
     this._modelCheckbox = value;
   }
 
-  constructor(fm: FormlyMessages, private ps: FormlyPubSub) {
+  constructor(fm: FormlyMessages, protected ps: FormlyPubSub) {
     this.messages = fm.getMessages();
     this.ps.Stream.subscribe(form => {
       this.form = form;

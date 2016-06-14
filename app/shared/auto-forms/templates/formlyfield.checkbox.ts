@@ -29,7 +29,7 @@ import {Checkbox} from "primeng/primeng";
 })
 export class FormlyFieldCheckbox extends Field {
 
-    constructor(fm: FormlyMessages, private ps: FormlyPubSub, private formBuilder: FormBuilder) {
+    constructor(fm: FormlyMessages, ps: FormlyPubSub, private formBuilder: FormBuilder) {
         super(fm, ps);
     }
 

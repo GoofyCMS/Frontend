@@ -1,18 +1,89 @@
-import {Injectable, provide} from "@angular/core";
+import {Injectable, provide, Inject} from "@angular/core";
+import {Http, Response, Headers, RequestOptions, RequestOptionsArgs} from "@angular/http";
+import {contentHeaders} from "./headers";
+import {Logger} from "../../../shared/resources/logger";
+import {Message} from "primeng/primeng";
+import {CookieService} from "angular2-cookie/core";
 
 
 @Injectable()
 export class AuthService {
-    login(user: string, password: string): boolean {
-        if (user === "user" && password === "password") {
-            localStorage.setItem("username", user);
-            return true;
-        }
+    private _loginUrl: string;
+    private _logoutUrl: string;
+    private _testUrl: string;
 
-        return false;
+
+    constructor(private http: Http, @Inject(Logger) private logger, @Inject(CookieService) _cookieService: CookieService) {
+        this._loginUrl = "http://localhost:5000/administration/login";
+        this._testUrl = "http://localhost:5000/test_something"
     }
 
-    logout(): any {
+
+    addMessage(messages: Message[], severity: string, summary: string, detail: string, timer: number = 2500): void {
+        messages.push({severity: severity, summary: summary, detail: detail});
+
+        setTimeout(function () {
+            this.messages = [];
+        }.bind(this), timer);
+    }
+
+    login(Email: string, Password: string, messages: Message[]): void {
+        let body: any = JSON.stringify({Email, Password});
+        let requestOptionArgs: RequestOptionsArgs = {headers: contentHeaders};
+        this.http.post(this._loginUrl, body, requestOptionArgs)
+            .subscribe(
+                response => {
+                    console.log("status of login url: " + response.statusText);
+
+                    this.http.get(this._testUrl, requestOptionArgs)
+                        .subscribe(
+                            response => {
+                                console.log("status of test url: " + response.statusText);
+                                console.log("body of test url: " + response.toString());
+                            },
+                            error => {
+                                console.log(error.text());
+                            }
+                        )
+
+                    localStorage.setItem("username", Email);
+                    this.addMessage(messages, "info", "Login Succesful", "Welcome to Goofy!!");
+                    console.log(response.json());
+                },
+                error => {
+                    console.log(error.text());
+                    this.addMessage(messages, "error", "Login Failed", "Invalid Credentials");
+                }
+            );
+    }
+
+    getUserAuth(url: string, email: string, password: string) {
+        let Register: any = {"Email": email, "Password": password, "ConfirmPassword": password};
+        let Email: string = email;
+        let Password: string = password;
+        let ConfirmPassword: string = password;
+        // var stringifyReg = stringify(register);
+        // var creds:string = "email=" + email + "&" + "password=" + password + "&" + "confirmPassword=" + password;
+
+        let body = JSON.stringify(Register);
+        let headers = new Headers({
+            "Content-Type": "application/json; charset=utf-8"
+        });
+        let options = new RequestOptions({headers: headers});
+        console.log(url);
+        console.log(body);
+        console.log(headers);
+
+        // console.log(stringifyReg);
+        this.http.post(
+            url,
+            body,
+            options
+        ).map((res: Response) => res.json())
+            .subscribe();
+    }
+
+    logout(messages: Message[]): void {
         localStorage.removeItem("username");
     }
 

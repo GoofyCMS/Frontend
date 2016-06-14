@@ -22,13 +22,13 @@ export class UserService {
     }
 
     getUsers() {
-        return Observable.from(USERS);
+        // return Observable.from(USERS);
     }
 
     getUser(id: number) {
-        return Observable.from(USERS)
-            .filter(user => user.id === id)
-            .subscribe();
+        // return Observable.from(USERS)
+        //     .filter(user => user.id === id)
+        //     .subscribe();
     }
 
     getUserAuth(url: string, email: string, password: string) {

@@ -1,24 +1,20 @@
 /// <reference path="../typings/breeze/breeze.d.ts" />
 import {provide} from "@angular/core";
 import {bootstrap} from "@angular/platform-browser-dynamic";
-
 import {HTTP_PROVIDERS} from "@angular/http";
-import "rxjs/add/operator/map";
-import {Observable} from "rxjs/observable";
-import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
-import {enableProdMode} from '@angular/core';
-
-import {GoofyAppComponent} from "./goofy.app.component";
 import {AUTH_PROVIDERS} from "./dashboard/base/login/auth.service";
-
-
+import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
+import {GoofyAppComponent} from "./goofy.app.component";
+import {Observable} from "rxjs/observable";
+import {enableProdMode} from '@angular/core';
+import "rxjs/add/operator/map";
 import {EventAggregator} from "./shared/services/event-aggregator";
 import {UnitOfWorkFactory} from "./shared/services/unitofwork";
-// import {Security} from "./shared/services/security";
 import {HttpService} from "./shared/services/http-service";
 import {Logger} from "./shared/resources/logger";
 import {FormlyProviders} from "./shared/auto-forms/services/formly.providers";
 import {FormlyBootstrap} from "./shared/auto-forms/templates/formlyBootstrap";
+
 
 
 // Angular-Breeze Q polyfill
@@ -63,7 +59,7 @@ import {FormlyBootstrap} from "./shared/auto-forms/templates/formlyBootstrap";
 })(breeze);
 
 
-let modules: string[] = [ ];
+let modules: string[] = ["plugin", "blog"];
 let eventAggregator: EventAggregator = new EventAggregator();
 let logger: Logger = new Logger();
 logger.logInfo(null, "Get metadata from modules", modules, this);
@@ -97,11 +93,3 @@ factory.configure(modules)
     .catch(error => logger.logError("Error!", "Error Loading Modules", error, this, true));
 
 
-// bootstrap(GoofyAppComponent, [
-//     HTTP_PROVIDERS,
-//     ROUTER_PROVIDERS,
-//     AUTH_PROVIDERS,
-// ]).then(
-//     success => console.log("GoofyApp bootstrapeed!!"),
-//     error => console.log(error)
-// );

@@ -1,0 +1,20 @@
+<div class="ContentSideSections">
+    <h3 class="first">Plugins List</h3>
+
+    <table class="doc-table">
+        <thead>
+        <tr class="text-center">
+            <th>ID</th>
+            <th>Name</th>
+            <th>State</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let plugin of _elems, let i = index">
+            <td>{{plugin.id}}</td>
+            <td>{{plugin.name}}</td>
+            <td><p-inputSwitch [(ngModel)]="plugin.enabled"></p-inputSwitch></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

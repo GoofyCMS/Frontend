@@ -29,7 +29,7 @@ import {InputSwitch} from "primeng/primeng";
 })
 export class FormlyFieldToggle extends Field {
 
-    constructor(fm: FormlyMessages, private ps: FormlyPubSub, private formBuilder: FormBuilder) {
+    constructor(fm: FormlyMessages, ps: FormlyPubSub, private formBuilder: FormBuilder) {
         super(fm, ps);
     }
 
