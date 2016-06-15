@@ -24,7 +24,7 @@ export class BaseService {
         this._repo.add(values);
     }
     
-    public delete(entity){
+    public remove(entity){
         this._repo.remove(entity);
     }
     

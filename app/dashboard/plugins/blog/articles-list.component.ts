@@ -36,8 +36,13 @@ export class ArticleListComponent implements OnInit {
         //     if(_listToRemove.contains())
     }
 
+    public editArticle() {
+        this._articles[0].content = this._articles[0].content + " edited";
+        this._articleService.save();
+    }
+
     public removeArticle() {
-        this._articleService.delete(this._articles.pop());
+        this._articleService.remove(this._articles.pop());
         this._articleService.save();
     }
 
