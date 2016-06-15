@@ -59,7 +59,7 @@ import {FormlyBootstrap} from "./shared/auto-forms/templates/formlyBootstrap";
 })(breeze);
 
 
-let modules: string[] = ["plugin", "blog"];
+let modules: string[] = ["administration", "blog"];
 let eventAggregator: EventAggregator = new EventAggregator();
 let logger: Logger = new Logger();
 logger.logInfo(null, "Get metadata from modules", modules, this);

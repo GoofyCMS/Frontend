@@ -15,10 +15,23 @@ export class BaseService {
         this._repo = context.getRepository(this._entityType);
         this._datasource = new Datasource(this._repo);
     }
-    
-    protected getAll(){
+
+    protected getAll() {
         return this._repo.getAll();
     }
 
+    public add(values: any): void {
+        this._repo.add(values);
+    }
+    
+    public delete(entity){
+        this._repo.remove(entity);
+    }
+    
+    public save(entities?:string): void {
+        this._repo.saveChanges()
+    }
+    
+    
 
 }

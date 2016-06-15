@@ -6,7 +6,7 @@ import {BaseService} from "../base.service";
 export class PluginsService extends BaseService {
 
     constructor(@Inject(UnitOfWorkFactory) _uowf: UnitOfWorkFactory) {
-        super(_uowf, "plugin", "PluginItem");
+        super(_uowf, "administration", "PluginItem");
     }
 
     getPlugins() {
