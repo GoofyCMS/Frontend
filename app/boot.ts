@@ -16,7 +16,6 @@ import {FormlyProviders} from "./shared/auto-forms/services/formly.providers";
 import {FormlyBootstrap} from "./shared/auto-forms/templates/formlyBootstrap";
 
 
-
 // Angular-Breeze Q polyfill
 (function (breeze) {
 
@@ -59,37 +58,54 @@ import {FormlyBootstrap} from "./shared/auto-forms/templates/formlyBootstrap";
 })(breeze);
 
 
-let modules: string[] = ["administration", "blog"];
+let modules: string[] = [];
 let eventAggregator: EventAggregator = new EventAggregator();
 let logger: Logger = new Logger();
 logger.logInfo(null, "Get metadata from modules", modules, this);
 let factory: UnitOfWorkFactory = new UnitOfWorkFactory(logger, eventAggregator);
 
-factory.configure(modules)
-    .then(response => {
+factory.configure(["administration"])
+    .then(a => {
+        factory.getContext("administration")
+            .getRepository("PluginItem")
+            .getAll()
+            .then(b => {
+                b.results.forEach(plugin => {
+                    if (plugin.enabled)
+                        modules.push(plugin.name.toLowerCase())
+                })
+            })
+            .then(c => {
+            factory.configure(modules)
+                .then(response => {
 
-        logger.logInfo("Success", "Modules loaded", response, factory);
+                    logger.logInfo("Success", "Modules loaded", response, factory);
 
-        let providers: any[] = [
-            HTTP_PROVIDERS,
-            ROUTER_PROVIDERS,
-            AUTH_PROVIDERS,
-            provide(Logger, {useValue: logger}),
-            provide(UnitOfWorkFactory, {useValue: factory}),
-            provide(EventAggregator, {useValue: new EventAggregator()}),
-            HttpService,
-            FormlyBootstrap, FormlyProviders
-        ];
-        for (var module of modules) {
-            providers.push(provide(module + ".UnitOfWork", {
-                useFactory: () => factory.getContext(module),
-            }));
-        }
+                    let providers: any[] = [
+                        HTTP_PROVIDERS,
+                        ROUTER_PROVIDERS,
+                        AUTH_PROVIDERS,
+                        provide(Logger, {useValue: logger}),
+                        provide(UnitOfWorkFactory, {useValue: factory}),
+                        provide(EventAggregator, {useValue: new EventAggregator()}),
+                        HttpService,
+                        FormlyBootstrap, FormlyProviders
+                    ];
+                    for (var module of modules) {
+                        providers.push(provide(module + ".UnitOfWork", {
+                            useFactory: () => factory.getContext(module),
+                        }));
+                    }
 
-        bootstrap(GoofyAppComponent, providers)
-            .then(() => logger.logSuccess(null, "GoofyApp Bootstrapped", null, this, true))
-            .catch(error => logger.logError("Error!", "Error Boostraping GoofyApp", error, this, true));
-    })
-    .catch(error => logger.logError("Error!", "Error Loading Modules", error, this, true));
+                    bootstrap(GoofyAppComponent, providers)
+                        .then(() => logger.logSuccess(null, "GoofyApp Bootstrapped", null, this, true))
+                        .catch(error => logger.logError("Error!", "Error Boostraping GoofyApp", error, this, true));
+                })
+                .catch(error => logger.logError("Error!", "Error Loading Modules", error, this, true));
+        })
+    });
+
+
+
 
 

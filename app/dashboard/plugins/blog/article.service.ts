@@ -9,8 +9,19 @@ export class ArticleService extends BaseService {
         super(_uowf, "blog", "ArticleItem");
     }
 
-    getArticles() {
-        return this.getAll()
+    public getArticles() {
+        return this.getAll();
     }
 
+    public addArticle(values: any): void {
+        this.add(values);
+    }
+
+    public removeArticle(entity){
+        this.remove(entity);
+    }
+
+    public saveChanges(entities?:string): void {
+        this.save()
+    }
 }

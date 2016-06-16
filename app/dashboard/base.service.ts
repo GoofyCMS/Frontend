@@ -19,16 +19,24 @@ export class BaseService {
     protected getAll() {
         return this._repo.getAll();
     }
+    
+    protected registerContext(name:string){
+        this._uowf.configure([name]).then(
+            r => {}
+        );
+    }
 
-    public add(values: any): void {
+    protected add(values: any): void {
         this._repo.add(values);
+        this._repo.saveChanges();
     }
-    
-    public remove(entity){
+
+    protected remove(entity){
         this._repo.remove(entity);
+        this._repo.saveChanges();
     }
-    
-    public save(entities?:string): void {
+
+    protected save(entities?:string): void {
         this._repo.saveChanges()
     }
     

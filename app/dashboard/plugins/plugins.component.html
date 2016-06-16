@@ -13,7 +13,7 @@
         <tr *ngFor="let plugin of _plugins, let i = index">
             <td>{{plugin.id}}</td>
             <td>{{plugin.name}}</td>
-            <td><p-inputSwitch [(ngModel)]="plugin.enabled"></p-inputSwitch></td>
+            <td><p-inputSwitch [(ngModel)]="plugin.enabled" (onChange)="changeState(plugin)"></p-inputSwitch></td>
         </tr>
         </tbody>
     </table>

@@ -41,6 +41,10 @@ export class PluginsComponent implements OnInit {
         return this._pluginsService.getPlugin(id);
     }
 
+    changeState(plugin) {
+        this._pluginsService.changeState(plugin);
+    }
+
     ngOnInit(): void {
         this.getPlugins();
     }

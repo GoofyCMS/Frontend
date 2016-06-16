@@ -9,7 +9,7 @@ import {CookieService} from "angular2-cookie/core";
     directives: [InputText, Button, Growl],
     templateUrl: "./app/dashboard/base/login/login.component.html",
     styleUrls: ["./app/dashboard/base/login/login.component.css"],
-    providers: [AuthService,CookieService],
+    providers: [AuthService, CookieService],
 })
 export class LoginComponent {
     messages: Message[] = [];

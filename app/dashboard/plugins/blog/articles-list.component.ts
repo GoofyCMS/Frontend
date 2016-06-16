@@ -31,23 +31,39 @@ export class ArticleListComponent implements OnInit {
     }
 
     public _listToRemove: number[];
+    public _selectedList: number[];
 
-    public changeInput(e, id) {
-        //     if(_listToRemove.contains())
+    public changeInput(e, article) {
+        // if (this.isSelected(article.id))
+        //      this._selectedList.remove(article.id);
+        // else
+            this._selectedList.push(article.id);
+    }
+    
+    public addArticle(){
+        this._articleService.addArticle([{content: "article of " + Date.now()}]);
+    }
+
+    public isSelected(id) {
+        this._selectedList.forEach(a => {
+            if (a == id)
+                return true
+        });
+        return false;
     }
 
     public editArticle() {
         this._articles[0].content = this._articles[0].content + " edited";
-        this._articleService.save();
+        this._articleService.saveChanges();
     }
 
     public removeArticle() {
-        this._articleService.remove(this._articles.pop());
-        this._articleService.save();
+        this._articleService.removeArticle(this._articles.pop());
     }
 
     ngOnInit(): void {
         this._listToRemove = [];
+        this._selectedList = [];
         this.getArticles();
     }
 }
