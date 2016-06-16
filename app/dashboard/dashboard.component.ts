@@ -8,6 +8,15 @@ import {LoginComponent} from "./base/login/login.component";
 import {MenuComponent} from "./base/menu/menu.component";
 import {Sidebar} from "./base/sidebar/sidebar.component";
 import {PluginsComponent} from "./plugins/plugins.components";
+import {
+    PermissionComponent,
+    RoleClaimComponent,
+    RoleComponent,
+    UserClaimComponent,
+    UserRoleComponent,
+    UserComponent
+} from "./base/auth/auth";
+
 
 
 @Component({
@@ -20,8 +29,13 @@ import {PluginsComponent} from "./plugins/plugins.components";
     {path: "/login", as: "Login", component: LoginComponent, useAsDefault: true},
     {path: "/main", as: "Main", component: MainContentComponent},
     {path: "/articles", as: "ArticlesList", component: ArticleListComponent},
-    {path: "/users", as: "Users", component: UsersComponent},
     {path: "/plugins", as: "Plugins", component: PluginsComponent},
+    {path: "/auth-user", as: "AuthUsers", component: UserComponent},
+    {path: "/auth-roles", as: "AuthRoles", component: RoleComponent},
+    {path: "/auth-permissions", as: "AuthPermissions", component: PermissionComponent},
+    {path: "/auth-user-roles", as: "AuthUserRoles", component: UserRoleComponent},
+    {path: "/auth-user-claims", as: "AuthUserClaims", component: UserClaimComponent},
+    {path: "/auth-role-claims", as: "AuthRoleClaims", component: RoleClaimComponent },
     {path: "/**", redirectTo: ["Login"]},
 ])
 export class GoofyDashboardComponent {
