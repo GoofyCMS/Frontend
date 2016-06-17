@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {ArticleService} from "./article.service";
-import {IArticle} from "../../../shared/models/article";
 import {InputSwitch, Button} from "primeng/primeng";
 import {DataTableWrapper} from "../../../shared/resources/datatable";
 
@@ -14,20 +13,14 @@ import {DataTableWrapper} from "../../../shared/resources/datatable";
 
 export class ArticleListComponent implements OnInit {
     public _articles: any;
-
+    
     constructor(private _articleService: ArticleService) {
     }
 
     public getArticles(): void {
         this._articles = [];
-
-        this._articles = [];
         this._articleService.getArticles()
-            .then(
-                s=> {
-                    this._articles = s.results;
-                }
-            );
+        
     }
 
     public _listToRemove: number[];
@@ -37,11 +30,11 @@ export class ArticleListComponent implements OnInit {
         // if (this.isSelected(article.id))
         //      this._selectedList.remove(article.id);
         // else
-            this._selectedList.push(article.id);
+        this._selectedList.push(article.id);
     }
-    
-    public addArticle(){
-        this._articleService.addArticle([{content: "article of " + Date.now()}]);
+
+    public addArticle() {
+        this._articleService.addArticle({content: "article of " + Date.now().toLocaleString()});
     }
 
     public isSelected(id) {
@@ -53,12 +46,16 @@ export class ArticleListComponent implements OnInit {
     }
 
     public editArticle() {
-        this._articles[0].content = this._articles[0].content + " edited";
-        this._articleService.saveChanges();
+        // this._articles[0].content = this._articles[0].content + " edited";
+        this._articleService._datasource.items[0].content = this._articleService._datasource.items[0].content + " edited";
     }
 
     public removeArticle() {
-        this._articleService.removeArticle(this._articles.pop());
+        this._articleService.removeArticle(this._articleService._datasource.items[0]);
+    }
+
+    public saveChanges(){
+        this._articleService.saveChanges();
     }
 
     ngOnInit(): void {

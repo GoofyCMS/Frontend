@@ -4,7 +4,7 @@ import {InputSwitch} from "primeng/primeng";
 
 @Component({
     selector: "roles",
-    templateUrl: "./app/dashboard/auth/role/role.component.html",
+    templateUrl: "./app/dashboard/base/auth/role/role.component.html",
     directives: [InputSwitch],
     providers: [RoleService],
 })

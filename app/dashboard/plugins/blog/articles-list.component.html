@@ -6,13 +6,16 @@
         </tr>
         <tr>
             <td class="right-align">
-                <button pButton type="button" label="Add New"></button>
+                <button pButton type="button" (click)="addArticle()" label="Add New"></button>
             </td>
             <td class="right-align">
                 <button pButton type="button" (click)="removeArticle()" label="Remove Last"></button>
             </td>
             <td class="right-align">
                 <button pButton type="button" (click)="editArticle()" label="Edit First"></button>
+            </td>
+            <td class="right-align">
+                <button pButton type="button" (click)="saveChanges()" label="Save"></button>
             </td>
         </tr>
     </table>
@@ -21,23 +24,15 @@
         <thead>
         <tr class="text-center">
             <th>ID</th>
-            <!--<th>Author</th>-->
-            <!--<th>Created Date</th>-->
             <th>Content</th>
-            <!--<th>State</th>-->
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let article of _articles, let i = index"
+        <tr *ngFor="let article of _articleService._datasource.items"
             (click)="changeInput($event, article)"
             [class.selected]="isSelected(article.id)">
             <td>{{article.id}}</td>
-            <td>{{article.content | slice:0:50}}<span *ngIf="article.content.length > 50"> ... </span></td>
-            <!--<td>{{article.createdDate}}</td>-->
-            <!--<td>{{article.text  }} </td>-->
-            <!--<td>-->
-            <!--<p-inputSwitch [(ngModel)]="article.show"></p-inputSwitch>-->
-            <!--</td>-->
+            <td>{{article.content}}</td>
         </tr>
         </tbody>
     </table>

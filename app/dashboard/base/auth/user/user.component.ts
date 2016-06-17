@@ -3,7 +3,7 @@ import {UserService} from "./user.service";
 
 @Component({
     selector: "users",
-    templateUrl: "./app/dashboard/auth/user/user.component.html",
+    templateUrl: "./app/dashboard/base/auth/user/user.component.html",
     providers: [UserService],
 })
 export class UserComponent implements OnInit {

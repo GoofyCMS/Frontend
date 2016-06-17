@@ -4,7 +4,7 @@ import {InputSwitch} from "primeng/primeng";
 
 @Component({
     selector: "permissions",
-    templateUrl: "./app/dashboard/auth/permission/permission.component.html",
+    templateUrl: "./app/dashboard/base/auth/permission/permission.component.html",
     directives: [InputSwitch],
     providers: [PermissionService],
 })
@@ -14,17 +14,15 @@ export class PermissionComponent implements OnInit {
     constructor(private _permissionService: PermissionService) {
     }
 
-    public getPermissions(): void {
-        this._elems= [];
-        this._permissionService.getPermissions()
-            .then(
-                s=> {
-                    this._elems= s.results;
-                }
-            );
+    public Elems() {
+        return this._permissionService._datasource.items;
+    }
+
+    public GetAll(): void {
+        this._permissionService.GetAll();
     }
 
     ngOnInit(): void {
-        this.getPermissions();
+        this.GetAll();
     }
 }

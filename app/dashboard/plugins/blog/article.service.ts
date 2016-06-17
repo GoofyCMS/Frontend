@@ -10,18 +10,29 @@ export class ArticleService extends BaseService {
     }
 
     public getArticles() {
-        return this.getAll();
+        // return this.getAll();
+        return this._datasource.reload();
     }
 
     public addArticle(values: any): void {
-        this.add(values);
+        // this.add(values);
+        this._datasource.add(values);
+
     }
 
-    public removeArticle(entity){
-        this.remove(entity);
+    public removeArticle(entity) {
+        // this.remove(entity);
+        this._datasource.remove(entity);
     }
 
-    public saveChanges(entities?:string): void {
-        this.save()
+    public saveChanges(entities?: string): void {
+        this._datasource.saveChanges()
+            .then(() => {
+                this.logger.logSuccess('Success!', 'All changes are saved!', null, this, true);
+                this._datasource.rejectChanges()
+                    .then(()=>this._datasource.reload());
+            })
+            .catch((e) => this.logger.logError('Error!', `There's an error in the request`, e, this, true));
+        // this._datasource.items.forEach( i => i.rejectChanges());
     }
 }

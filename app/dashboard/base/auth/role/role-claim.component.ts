@@ -3,7 +3,7 @@ import {RoleClaimService} from "./role-claim.service";
 
 @Component({
     selector: "role-claims",
-    templateUrl: "./app/dashboard/auth/role/role-claim.component.html",
+    templateUrl: "./app/dashboard/base/auth/role/role-claim.component.html",
     providers: [RoleClaimService],
 })
 export class RoleClaimComponent implements OnInit {

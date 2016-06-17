@@ -3,7 +3,7 @@ import {UserClaimService} from "./user-claim.service";
 
 @Component({
     selector: "user-claims",
-    templateUrl: "./app/dashboard/auth/user/user-claims.component.html",
+    templateUrl: "./app/dashboard/base/auth/user/user-claims.component.html",
     providers: [UserClaimService],
 })
 export class UserClaimComponent implements OnInit {

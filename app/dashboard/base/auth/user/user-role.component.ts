@@ -3,7 +3,7 @@ import {UserRoleService} from "./user-role.service";
 
 @Component({
     selector: "user-roles",
-    templateUrl: "./app/dashboard/auth/user/user-role.component.html",
+    templateUrl: "./app/dashboard/base/auth/user/user-role.component.html",
     providers: [UserRoleService],
 })
 export class UserRoleComponent implements OnInit {
