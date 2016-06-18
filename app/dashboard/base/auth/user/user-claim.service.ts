@@ -10,7 +10,7 @@ export class UserClaimService extends BaseService {
     }
 
     public getUserClaims() {
-        return this.getAll();
+        return this.GetAll();
     }
 
     public addUserClaim(values: any): void {

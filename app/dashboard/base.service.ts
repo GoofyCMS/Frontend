@@ -1,5 +1,3 @@
-import {Component} from "@angular/core";
-
 import {UnitOfWorkFactory, UnitOfWork} from "./../shared/services/unitofwork";
 import {Datasource} from "./../shared/services/datasource";
 import {Repository} from "./../shared/services/repository";
@@ -20,35 +18,47 @@ export class BaseService {
 
     }
 
-    protected getAll() {
-        return this._repo.getAll();
-    }
-    
-    protected registerContext(name:string){
-        this._uowf.configure([name]).then(
-            r => {}
-        );
+    protected GetAll() {
+        return this._datasource.reload();
     }
 
     protected add(values: any) {
-        // return this._repo.add(values);
-        // this._repo.saveChanges();
         this._datasource.add(values);
     }
 
-    protected remove(entity){
-        this._repo.remove(entity);
-        this._repo.saveChanges().then(r =>{
-            this.getAll();
-        });
+    protected remove(entity) {
+        // this._repo.remove(entity);
+        // this._repo.saveChanges()
+        //     .then(r => {
+        //         this.GetAll();
+        //     });
+        this._datasource.remove(entity);
     }
 
-    protected save(entities?:string): void {
-        this._repo.saveChanges().then(r =>{
-            this.getAll();
-        });
+    protected elems() {
+        return this._datasource.items;
     }
-    
-    
+
+    protected saveChanges(entities?: string): void {
+        // this._repo.saveChanges().then(r => {
+        //     this.GetAll();
+        // });
+        this._datasource.saveChanges()
+            .then(() => {
+                this.logger.logSuccess('Success!', 'All changes are saved!', null, this, true);
+                this._datasource.rejectChanges()
+                    .then(()=>this._datasource.reload());
+            })
+            .catch((e) => this.logger.logError('Error!', `There's an error in the request`, e, this, true));
+    }
+
+    protected registerContext(name: string) {
+        this._uowf.configure([name])
+            .then(
+                r => {
+                }
+            );
+    }
+
 
 }

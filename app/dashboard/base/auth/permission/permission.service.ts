@@ -9,17 +9,12 @@ export class PermissionService extends BaseService {
         super(_uowf, "administration", "PermissionItem");
     }
 
-   
-
     public GetAll() {
-        // return this.getAll();
-        return this._datasource.reload();
+        return this.GetAll();
     }
 
     public addArticle(values: any): void {
-        // this.add(values);
         this._datasource.add(values);
-
     }
 
     public removeArticle(entity) {

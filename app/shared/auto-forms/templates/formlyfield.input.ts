@@ -63,8 +63,8 @@ export class FormlyFieldInput extends Field implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        if (this.templateOptions.focus) {
-            this.elem.nativeElement.querySelector("input").focus();
-        }
+        // if (this.templateOptions.focus) {
+        //     this.elem.nativeElement.querySelector("input").focus();
+        // }
     }
 }

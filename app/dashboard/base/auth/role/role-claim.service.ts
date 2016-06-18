@@ -10,7 +10,7 @@ export class RoleClaimService extends BaseService {
     }
 
     public getRoleClaims() {
-        return this.getAll();
+        return this.GetAll();
     }
 
     public addRoleClaim(values: any): void {

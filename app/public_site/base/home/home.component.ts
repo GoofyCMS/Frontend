@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Validators, FormBuilder} from "@angular/common";
 
 import {FormlyForm} from "./../../../shared/auto-forms/components/formly.form";
-import {ValidationService} from "./validation.service";
+import {ValidationService} from "../../../dashboard/plugins/blog/validation.service";
 import {FormlyProviders} from "./../../../shared/auto-forms/services/formly.providers";
 import {FormlyMessages} from "./../../../shared/auto-forms/services/formly.messages";
 import {FormlyEventEmitter} from "./../../../shared/auto-forms/services/formly.event.emitter";
@@ -64,15 +64,15 @@ export class HomeComponent {
 
                 this.userFields = [
                     {
-                        type: "radio",
+                        type: "select",
                         key: "title",
                         templateOptions: {
                             options: [{
-                                key: "mr",
-                                value: "Mr."
+                                value: "mr",
+                                label: "Mr."
                             }, {
-                                key: "mrs",
-                                value: "Mrs"
+                                value: "mrs",
+                                label: "Mrs."
                             }],
                             label: "Title",
                             description: "Select a title that suits your description"
@@ -104,7 +104,7 @@ export class HomeComponent {
                         validation: Validators.compose([Validators.required, Validators.maxLength(10), Validators.minLength(2)])
                     },
                     {
-                        key: "select",
+                        key: "gender",
                         type: "select",
                         templateOptions: {
                             options: [{
@@ -211,7 +211,7 @@ export class HomeComponent {
                 this.user = {
                     email: "email@gmail.com",
                     checked: false,
-                    select: "male",
+                    gender: "male",
                     title: "Mr.",
                     toggleVal: false,
                     interest: {
@@ -260,7 +260,7 @@ export class HomeComponent {
         this.user = {
             email: "email@gmail.com",
             checked: true,
-            select: "male",
+            gender: "male",
             title: "Mr.",
             toggleVal: true,
             interest: {
@@ -274,4 +274,6 @@ export class HomeComponent {
     submit(user) {
         console.log(user);
     }
+    
+    
 }

@@ -1,4 +1,29 @@
 <div class="ContentSideSections">
+    <p-dialog header="Add Dialog" [(visible)]="displayAddDialog" modal="modal" showEffect="fade">
+        <formly-form [model]="newModel"
+                     [fields]="articleFields"
+                     (formSubmit)="resetForm()"
+                     [form]="addForm">
+        </formly-form>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button pButton
+                        type="button"
+                        (click)="addItem()"
+                        label="Add">
+                </button>
+            </div>
+        </footer>
+    </p-dialog>
+    <p-dialog header="Edit Dialog" [(visible)]="displayEditDialog" modal="modal" showEffect="fade">
+        <formly-form
+                [model]="selectedItem"
+                [fields]="articleFields"
+                (formSubmit)="console($event)"
+                [form]="editForm">
+            <button pButton type="button" label="Accept" (click)="editItem()"></button>
+        </formly-form>
+    </p-dialog>
     <table>
         <tr>
             <td><h3 class="first">Articles</h3></td>
@@ -6,13 +31,21 @@
         </tr>
         <tr>
             <td class="right-align">
-                <button pButton type="button" (click)="addArticle()" label="Add New"></button>
+
+                <button pButton type="text"
+                        (click)="showAddDialog()"
+                        icon="fa-external-link-square"
+                        label="Add New">
+                </button>
             </td>
+
             <td class="right-align">
-                <button pButton type="button" (click)="removeArticle()" label="Remove Last"></button>
+
+                <button pButton type="button" (click)="showEditDialog()" label="Edit"></button>
             </td>
+
             <td class="right-align">
-                <button pButton type="button" (click)="editArticle()" label="Edit First"></button>
+                <button pButton type="button" (click)="removeItem()" label="Remove"></button>
             </td>
             <td class="right-align">
                 <button pButton type="button" (click)="saveChanges()" label="Save"></button>
@@ -28,11 +61,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let article of _articleService._datasource.items"
-            (click)="changeInput($event, article)"
-            [class.selected]="isSelected(article.id)">
-            <td>{{article.id}}</td>
-            <td>{{article.content}}</td>
+        <tr *ngFor="let item of _articleService._datasource.items"
+            (click)="changeInput($event, item)"
+            [class.selected]="selectedItem!=null">
+            <td>{{item.id}}</td>
+            <td>{{item.content}}</td>
         </tr>
         </tbody>
     </table>

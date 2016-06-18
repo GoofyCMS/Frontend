@@ -5,13 +5,13 @@
         </tr>
         <tr>
             <td class="right-align">
-                <button pButton type="button" (click)="" label="Add New"></button>
+                <button pButton type="button" label="Add New"></button>
             </td>
             <td class="right-align">
-                <button pButton type="button" (click)="" label="Remove Last"></button>
+                <button pButton type="button" label="Remove Last"></button>
             </td>
             <td class="right-align">
-                <button pButton type="button" (click)="" label="Edit First"></button>
+                <button pButton type="button" label="Edit First"></button>
             </td>
         </tr>
     </table>
@@ -24,9 +24,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let perm of Elems()">
-            <td>{{perm.id}}</td>
-            <td>{{perm.name}}</td>
+        <tr *ngFor="let perm of _">
+        <td>{{perm.id}}</td>
+        <td>{{perm.name}}</td>
         </tr>
         </tbody>
     </table>

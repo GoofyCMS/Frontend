@@ -10,7 +10,7 @@ export class UserService extends BaseService {
     }
 
     public getUsers() {
-        return this.getAll();
+        return this.GetAll();
     }
 
     public addUser(values: any): void {

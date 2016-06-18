@@ -13,7 +13,7 @@ export class PluginsService extends BaseService {
     }
 
     public getPlugins() {
-        return this.getAll()
+        return this.GetAll()
     }
 
     public changeState(plugin) {

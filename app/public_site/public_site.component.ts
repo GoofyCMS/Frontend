@@ -15,7 +15,7 @@ import {BreezeTest} from "./base/home/breezetest";
     directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, NavbarComponent],
 })
 @RouteConfig([
-    {path: "/", as: "Home", component: BreezeTest, useAsDefault: true},
+    {path: "/", as: "Home", component: HomeComponent, useAsDefault: true},
     {path: "/articles", as: "ArticlesList", component: ArticleListComponent},
     {path: "/dashboard/**", redirectTo: ["GoofyDashboard"]},
     {path: "/**", redirectTo: ["Home"]},

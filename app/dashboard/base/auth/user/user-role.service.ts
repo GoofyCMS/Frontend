@@ -10,7 +10,7 @@ export class UserRoleService extends BaseService {
     }
 
     public getUserRoles() {
-        return this.getAll();
+        return this.GetAll();
     }
 
     public addUserRole(values: any): void {

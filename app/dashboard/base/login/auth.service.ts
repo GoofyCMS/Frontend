@@ -1,6 +1,6 @@
 import {Injectable, provide, Inject} from "@angular/core";
 import {Http, Response, Headers, RequestOptions, RequestOptionsArgs} from "@angular/http";
-import {contentHeaders} from "./headers";
+import {contentHeaders, contenturlencoded} from "./headers";
 import {Logger} from "../../../shared/resources/logger";
 import {Message} from "primeng/primeng";
 import {CookieService} from "angular2-cookie/core";
@@ -14,7 +14,7 @@ export class AuthService {
 
 
     constructor(private http: Http, @Inject(Logger) private logger, @Inject(CookieService) _cookieService: CookieService) {
-        this._loginUrl = "http://localhost:5000/administration/login";
+        this._loginUrl = "http://localhost:5000/token";
         this._testUrl = "http://localhost:5000/test_something"
     }
 
@@ -27,15 +27,17 @@ export class AuthService {
         }.bind(this), timer);
     }
 
-    login(Email: string, Password: string, messages: Message[]): void {
-        let body: any = JSON.stringify({Email, Password});
-        let requestOptionArgs: RequestOptionsArgs = {headers: contentHeaders};
-        this.http.post(this._loginUrl, body, requestOptionArgs)
+    login(username: string, password: string, messages: Message[]): void {
+        let body: any = JSON.stringify({username, password});
+        // let body: string = `username=${username}&password=${password}`;
+        let requestOptions: RequestOptions = new RequestOptions();
+        requestOptions.headers = contentHeaders;
+        this.http.post(this._loginUrl, body, requestOptions)
             .subscribe(
                 response => {
-                    console.log("status of login url: " + response.statusText);
+                    console.log("status of login url: " + response.json().access_token);
 
-                    this.http.get(this._testUrl, requestOptionArgs)
+                    this.http.get(this._testUrl, requestOptions)
                         .subscribe(
                             response => {
                                 console.log("status of test url: " + response.statusText);
@@ -44,9 +46,9 @@ export class AuthService {
                             error => {
                                 console.log(error.text());
                             }
-                        )
+                        );
 
-                    localStorage.setItem("username", Email);
+                    localStorage.setItem("username", username);
                     this.addMessage(messages, "info", "Login Succesful", "Welcome to Goofy!!");
                     console.log(response.json());
                 },
