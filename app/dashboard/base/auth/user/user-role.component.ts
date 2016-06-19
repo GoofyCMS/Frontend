@@ -14,12 +14,12 @@ export class UserRoleComponent implements OnInit {
 
     public getUserRoles(): void {
         this._elems= [];
-        this._userRoleService.getUserRoles()
-            .then(
-                s=> {
-                    this._elems= s.results;
-                }
-            );
+        // this._userRoleService.getUserRoles()
+        //     .then(
+        //         s=> {
+        //             this._elems= s.results;
+        //         }
+        //     );
     }
 
     ngOnInit(): void {

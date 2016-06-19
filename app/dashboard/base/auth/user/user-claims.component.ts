@@ -14,12 +14,12 @@ export class UserClaimComponent implements OnInit {
 
     public getUserClaims(): void {
         this._elems= [];
-        this._userClaimService.getUserClaims()
-            .then(
-                s=> {
-                    this._elems= s.results;
-                }
-            );
+        // this._userClaimService.getUserClaims()
+        //     .then(
+        //         s=> {
+        //             this._elems= s.results;
+        //         }
+        //     );
     }
 
     ngOnInit(): void {

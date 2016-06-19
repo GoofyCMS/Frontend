@@ -1,27 +1,26 @@
-import {Component} from "@angular/core";
+import {Component, Inject} from "@angular/core";
 import {InputText, Password, Button, Message, Growl} from "primeng/primeng";
-import {AuthService} from "./auth.service";
-import {CookieService} from "angular2-cookie/core";
+import {AuthService} from "./../../../../shared/services/auth.service";
 
 
 @Component({
     selector: "login-form",
     directives: [InputText, Button, Growl],
-    templateUrl: "./app/dashboard/base/login/login.component.html",
-    styleUrls: ["./app/dashboard/base/login/login.component.css"],
-    providers: [AuthService, CookieService],
+    templateUrl: "./app/dashboard/base/auth/login/login.component.html",
+    styleUrls: ["./app/dashboard/base/auth/login/login.component.css"],
+    providers: [AuthService],
 })
 export class LoginComponent {
     messages: Message[] = [];
+    user: string;
 
-    constructor(public authService: AuthService) {
+    constructor(@Inject('AuthServiceProvider') private authService: AuthService) {
         this.messages = [];
+        this.user = authService.CurrentUser;
     }
-
 
     login(username: string, password: string): void {
         this.authService.login(username, password, this.messages);
-
     }
 
     logout(): boolean {

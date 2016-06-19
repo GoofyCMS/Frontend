@@ -1,0 +1,52 @@
+﻿<p-menubar>
+    <ul>
+        <li>
+            <a *ngIf="canAdd" (click)="addCommand()" data-toggle="tooltip" data-placement="bottom" title="Add new item" class="ui-menuitem-link ui-corner-all">
+                <i class="fa fa-plus fa-2x"></i>
+            </a>
+        </li>
+        <li>
+            <a *ngIf="canDelete && selected" (click)="deleteCommand()" data-toggle="tooltip" data-placement="bottom" title="Delete selected items" class="ui-menuitem-link ui-corner-all">
+                <i class="fa fa-remove fa-2x"></i>
+            </a>
+        </li>
+        <li>
+            <a *ngIf="canEdit && (selectionMode === 'single' && selected || selectionMode === 'multiple' && selected && selected.length)" (click)="editCommand()"
+               data-toggle="tooltip" data-placement="bottom" title="Edit selected item" class="ui-menuitem-link ui-corner-all">
+                <i class="fa fa-edit fa-2x"></i>
+            </a>
+        </li>
+        <li>
+            <a *ngIf="hasChanges && canSave" (click)="saveChangesCommand()" data-toggle="tooltip" data-placement="bottom" title="Save changes" class="ui-menuitem-link ui-corner-all">
+                <i class="fa fa-save fa-2x"></i>
+            </a>
+        </li>
+        <li>
+            <a *ngIf="hasChanges && canSave" (click)="rejectChangesCommand()" data-toggle="tooltip" data-placement="bottom" title="Cancel changes" class="ui-menuitem-link ui-corner-all">
+                <i class="fa fa-undo fa-2x"></i>
+            </a>
+        </li>
+        <li class="pull-right" *ngIf="datasource.isReloading">
+            <i class="fa fa-spinner fa-cog fa-2x"></i>
+        </li>
+    </ul>
+</p-menubar>
+<p-dataTable [value]="datasource.items"
+             [lazy]="lazy"
+             (onLazyLoad)="loadData($event)"
+             [totalRecords]="datasource.itemsCount"
+             [rows]="datasource.count"
+             [paginator]="paginator"
+             [selectionMode]="selectionMode"
+             [(selection)]="selected"
+             [responsive]="responsive"
+             [resizableColumns]="resizableColumns"
+             [reorderableColumns]="reorderableColumns"
+             [scrollable]="scrollable"
+             [scrollHeight]="scrollHeight"
+             [scrollWidth]="scrollWidth"
+             [editable]="inlineEdition">
+    <p-column *ngFor="let col of columns" [field]="col.field" [header]="col.header" [sortable]="col.sortable" [filter]="col.filter" [filterMatchMode]="col.filterMatchMode"></p-column>
+</p-dataTable>
+
+<ng-content select="datatable-dialog"></ng-content>

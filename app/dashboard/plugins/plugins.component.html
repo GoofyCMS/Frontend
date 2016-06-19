@@ -10,10 +10,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let plugin of _plugins, let i = index">
+        <tr *ngFor="let plugin of _plugins">
             <td>{{plugin.id}}</td>
             <td>{{plugin.name}}</td>
-            <td><p-inputSwitch [(ngModel)]="plugin.enabled" (onChange)="changeState(plugin)"></p-inputSwitch></td>
+            <td><p-inputSwitch [(ngModel)]="plugin.enabled" (onChange)="changeState(plugin)"></p-inputSwitch> {{plugin.enabled}}</td>
         </tr>
         </tbody>
     </table>

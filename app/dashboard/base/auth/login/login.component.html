@@ -2,8 +2,8 @@
     <div class="ui-grid ui-grid-responsive">
         <div class="ui-grid-row">
             <div class="ui-grid-col-12">
-                <div *ngIf="authService.getUser()">
-                    Logged in as <b>{{ authService.getUser() }}</b>
+                <div *ngIf="authService.IsLogged">
+                    Logged in as <b>{{ authService.CurrentUser }}</b>
                     <a href (click)="logout()">Log out</a>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <p-growl [value]="messages" [closable]="false"></p-growl>
             </div>
         </div>
-        <div *ngIf="!authService.getUser()">
+        <div *ngIf="!authService.IsLogged">
             <div class="ui-grid-row">
                 <div class="ui-grid-col-3"></div>
                 <div class="ui-grid-col-6">

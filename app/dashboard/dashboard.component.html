@@ -1,6 +1,5 @@
 <div class="PC">
-    <sidebar></sidebar>
-    <!-- footer start-->
+    <sidebar *ngIf="_authService.IsLogged"></sidebar>
     <div class="DashboardHeader">
         <div class="DashboardHeaderInner">
             <div class="DashboardHeaderItem floatRight">
@@ -11,24 +10,16 @@
             </div>
         </div>
     </div>
-    <!-- footer end-->
-    <div id="CONTENTSIDE">
+    <div [class.margin-left-300]="_authService.IsLogged" id="CONTENTSIDE">
         <div id="CONTENTSIDEindent">
-
-            <!--<menu></menu>-->
-
             <div>
                 <router-outlet></router-outlet>
             </div>
         </div>
     </div>
-
-    <!-- footer start-->
     <div class="SiteFooter">
         <span class="floatLeft fontSize14 gray"><a href="#">Goofy Dashboard</a>, Copyright &copy; 2016</span>
         <span class="floatRight fontSize14 gray">All rights reserved</span>
         <div style="clear:both"></div>
     </div>
-    <!-- footer end-->
-    <!--</div>-->
 </div>

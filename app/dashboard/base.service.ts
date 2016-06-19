@@ -7,13 +7,14 @@ export class BaseService {
     protected _repo: Repository;
     public _datasource: Datasource = null;
     protected logger: Logger;
+    protected _context: UnitOfWork;
 
     constructor(private _uowf: UnitOfWorkFactory,
                 protected _contextName: string,
                 protected _entityType: string) {
         this.logger = new Logger();
-        let context: UnitOfWork = this._uowf.getContext(this._contextName);
-        this._repo = context.getRepository(this._entityType);
+        this._context = this._uowf.getContext(this._contextName);
+        this._repo = this._context.getRepository(this._entityType);
         this._datasource = new Datasource(this._repo);
 
     }
@@ -27,11 +28,6 @@ export class BaseService {
     }
 
     protected remove(entity) {
-        // this._repo.remove(entity);
-        // this._repo.saveChanges()
-        //     .then(r => {
-        //         this.GetAll();
-        //     });
         this._datasource.remove(entity);
     }
 
@@ -58,6 +54,14 @@ export class BaseService {
                 r => {
                 }
             );
+    }
+
+    protected getContext(contextName: string) : UnitOfWork{
+        return this._uowf.getContext(this._contextName);
+    }
+
+    protected getRepository(contextName:string, entityTypeName: string){
+        return this.getContext(contextName).getRepository(entityTypeName);
     }
 
 

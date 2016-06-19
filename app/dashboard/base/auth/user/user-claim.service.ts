@@ -22,7 +22,7 @@ export class UserClaimService extends BaseService {
     }
 
     public saveChanges(entities?:string): void {
-        this.save()
+        super.saveChanges();
     }
 }
 

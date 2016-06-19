@@ -16,12 +16,12 @@ export class RoleComponent implements OnInit {
 
     public getRoles(): void {
         this._elems= [];
-        this._roleService.getRoles()
-            .then(
-                s=> {
-                    this._elems= s.results;
-                }
-            );
+        // this._roleService.getRoles()
+        //     .then(
+        //         s=> {
+        //             this._elems= s.results;
+        //         }
+        //     );
     }
 
     ngOnInit(): void {

@@ -1,33 +1,52 @@
 <div class="ContentSideSections">
-    <table>
-        <tr>
-            <td><h3 class="first">Articles</h3></td>
-        </tr>
-        <tr>
-            <td class="right-align">
-                <button pButton type="button" label="Add New"></button>
-            </td>
-            <td class="right-align">
-                <button pButton type="button" label="Remove Last"></button>
-            </td>
-            <td class="right-align">
-                <button pButton type="button" label="Edit First"></button>
-            </td>
-        </tr>
-    </table>
+    <p-dialog header="Add Dialog" [(visible)]="displayAddDialog" modal="modal" showEffect="fade">
+        <formly-form [model]="newModel"
+                     [fields]="formFields"
+                     (formSubmit)="resetForm()"
+                     [form]="addForm">
+        </formly-form>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button pButton
+                        type="button"
+                        (click)="addItem()"
+                        label="Add">
+                </button>
+            </div>
+        </footer>
+    </p-dialog>
+    <p-dialog header="Edit Dialog" [(visible)]="displayEditDialog" modal="modal" showEffect="fade">
+        <formly-form
+                [model]="selectedItem"
+                [fields]="articleFields"
+                (formSubmit)="console($event)"
+                [form]="editForm">
+            <button pButton type="button" label="Accept" (click)="editItem()"></button>
+        </formly-form>
+    </p-dialog>
 
-    <table class="doc-table">
-        <thead>
-        <tr class="text-center">
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let perm of _">
-        <td>{{perm.id}}</td>
-        <td>{{perm.name}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <datatable
+            [datasource]="datasource"
+            [columns]="columns"
+            (addEvent)="addEvent()"
+            (editEvent)="editEvent($event)"
+            (delEvent)="delEvent($event)">
+        <datatable-dialog>
+            <p-dialog [header]="dialogHeader" [visible]="showDialog" [responsive]="true" [resizable]="false"
+                      [minHeight]="600" closable="false" showEffect="fade" [modal]="true">
+                <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="dialogContent">
+                    <h3> {{dialogContent}}</h3>
+                </div>
+                <formly-form [model]="tmpEntity"
+                             [fields]="articleFields"
+                             (formSubmit)="resetForm()"
+                             [form]="form">
+                </formly-form>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel"></button>
+                    <button type="button" pButton icon="fa-check" (click)="ok()" label="Ok"></button>
+                </div>
+            </p-dialog>
+        </datatable-dialog>
+    </datatable>
 </div>

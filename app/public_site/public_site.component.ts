@@ -6,7 +6,6 @@ import {HomeComponent} from "./base/home/home.component";
 
 
 import {ArticleListComponent} from "./plugins/blog/articles-list.component";
-import {BreezeTest} from "./base/home/breezetest";
 
 @Component({
     selector: "public-site",

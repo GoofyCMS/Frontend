@@ -1,9 +1,0 @@
-<div class="ContentSideSections">
-
-        <formly-form [model]="article" [fields]="articleFields" (formSubmit)="console($event)" [form]="form">
-            <button pButton type="submit" label="SUBMIT!!" (click)="submit(article)"></button>
-        </formly-form>
-        <hr>
-        <br><strong>FORM DATA:</strong><br>
-        <pre>{{article | json}}</pre>
-</div>

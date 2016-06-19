@@ -14,12 +14,12 @@ export class RoleClaimComponent implements OnInit {
 
     public getRoleClaims(): void {
         this._elems= [];
-        this._roleClaimService.getRoleClaims()
-            .then(
-                s=> {
-                    this._elems= s.results;
-                }
-            );
+        // this._roleClaimService.getRoleClaims()
+        //     .then(
+        //         s=> {
+        //             this._elems= s.results;
+        //         }
+        //     );
     }
 
     ngOnInit(): void {

@@ -14,12 +14,12 @@ export class UserComponent implements OnInit {
 
     public getUsers(): void {
         this._elems= [];
-        this._userService.getUsers()
-            .then(
-                s=> {
-                    this._elems= s.results;
-                }
-            );
+        // this._userService.getUsers()
+        //     .then(
+        //         s=> {
+        //             this._elems= s.results;
+        //         }
+        //     );
     }
 
     ngOnInit(): void {

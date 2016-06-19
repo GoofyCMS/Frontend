@@ -1,12 +1,9 @@
 import {Component, OnInit, ReflectiveInjector, Inject} from "@angular/core";
 import {PluginsService} from "./plugin.service";
-import {IPlugin} from "./plugin";
 import {InputSwitch} from "primeng/primeng";
 import {CanActivate} from "@angular/router-deprecated";
-import {AuthService} from "../base/login/auth.Service";
+import {AuthService} from "../../shared/services/auth.service";
 import {Observable, Subscriber} from "rxjs/rx";
-import {UnitOfWorkFactory, UnitOfWork} from "../../shared/services/unitofwork";
-import {Resolver} from "../../shared/contextResolver";
 
 @Component({
     selector: "plugins",
@@ -18,27 +15,21 @@ import {Resolver} from "../../shared/contextResolver";
 //     (nextInstr: any, currInstr: any) => {
 //         let injector: any = ReflectiveInjector.resolveAndCreate([AuthService]);
 //         let authService: AuthService = injector.get(AuthService);
-//         return authService.isLogged();
+//         return authService.IsLogged();
 //     }
 // )
 export class PluginsComponent implements OnInit {
-    public _plugins: any[];
+    private _plugins: any;
 
-    constructor(private _pluginsService: PluginsService) {
+    constructor(public _pluginsService: PluginsService, @Inject(AuthService) public _authService: AuthService) {
+
     }
 
     public getPlugins(): void {
-        this._plugins = [];
         this._pluginsService.getPlugins()
             .then(
-                s=> {
-                    this._plugins = s.results;
-                }
+                res=> this._plugins = res.results
             );
-    }
-
-    public getPlugin(id: number) {
-        return this._pluginsService.getPlugin(id);
     }
 
     changeState(plugin) {

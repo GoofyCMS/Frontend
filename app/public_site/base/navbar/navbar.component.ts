@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Menu, MenuItem} from "primeng/primeng";
+import {Menu} from "primeng/primeng";
 import {RouterLink} from "@angular/router-deprecated";
 
 

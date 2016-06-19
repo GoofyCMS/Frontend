@@ -22,7 +22,7 @@ export class ArticleService extends BaseService {
     }
 
     public items() {
-        return super._datasource.items
+        return this._datasource.items
     }
 
     public removeItem(entity) {

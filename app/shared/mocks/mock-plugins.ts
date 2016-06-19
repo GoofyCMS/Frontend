@@ -1,4 +1,4 @@
-import {IPlugin} from "../../dashboard/plugins/plugin";
+import {IPlugin} from "../models/plugin";
 
 export var PLUGINS: IPlugin[] = [
     {id: 1, name: "Blogs", url: "./app/dashboard/plugins/blog/", author: "Adrian & Yoel", state: true},
