@@ -1,30 +1,4 @@
 <div class="ContentSideSections">
-    <p-dialog header="Add Dialog" [(visible)]="displayAddDialog" modal="modal" showEffect="fade">
-        <formly-form [model]="newModel"
-                     [fields]="articleFields"
-                     (formSubmit)="resetForm()"
-                     [form]="addForm">
-        </formly-form>
-        <footer>
-            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                <button pButton
-                        type="button"
-                        (click)="addItem()"
-                        label="Add">
-                </button>
-            </div>
-        </footer>
-    </p-dialog>
-    <p-dialog header="Edit Dialog" [(visible)]="displayEditDialog" modal="modal" showEffect="fade">
-        <formly-form
-                [model]="selectedItem"
-                [fields]="formFields"
-                (formSubmit)="console($event)"
-                [form]="editForm">
-            <button pButton type="button" label="Accept" (click)="editItem()"></button>
-        </formly-form>
-    </p-dialog>
-
     <datatable
             [datasource]="datasource"
             [columns]="columns"
@@ -38,7 +12,7 @@
                     <h3> {{dialogContent}}</h3>
                 </div>
                 <formly-form [model]="tmpEntity"
-                             [fields]="articleFields"
+                             [fields]="formFields"
                              (formSubmit)="resetForm()"
                              [form]="form">
                 </formly-form>

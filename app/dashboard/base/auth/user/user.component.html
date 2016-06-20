@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="ContentSideSections">
+    <datatable
+            [datasource]="datasource"
+            [columns]="columns"
+            (addEvent)="addEvent()"
+            (editEvent)="editEvent($event)"
+            (delEvent)="delEvent($event)">
+        <datatable-dialog>
+            <p-dialog [header]="dialogHeader" [visible]="showDialog" [responsive]="true" [resizable]="false"
+                      [minHeight]="600" closable="false" showEffect="fade" [modal]="true">
+                <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="dialogContent">
+                    <h3> {{dialogContent}}</h3>
+                </div>
+                <formly-form [model]="tmpEntity"
+                             [fields]="formFields"
+                             (formSubmit)="resetForm()"
+                             [form]="form">
+                </formly-form>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel"></button>
+                    <button type="button" pButton icon="fa-check" (click)="ok()" label="Ok"></button>
+                </div>
+            </p-dialog>
+        </datatable-dialog>
+    </datatable>
+</div>
