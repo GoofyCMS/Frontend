@@ -79,8 +79,10 @@ factory.configure(["administration"])
             .getAll()
             .then(b => {
                 b.results.forEach(plugin => {
-                    if (plugin.enabled)
-                        modules.push(plugin.name.toLowerCase())
+                    if (plugin.enabled){
+                        modules.push(plugin.name.toLowerCase() + 'Admin');
+                        modules.push(plugin.name.toLowerCase() + 'Public');
+                    }
                 })
             })
             .then(c => {

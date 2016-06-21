@@ -9,31 +9,20 @@ import {TemplateDirectives} from "../auto-forms/templates/templates";
 import {UnitOfWorkFactory} from "../services/unitofwork";
 import {Logger} from "./../../shared/resources/logger";
 import {Router} from "@angular/router-deprecated";
-import {Validators, FormBuilder} from "@angular/common";
 // import {ValidationService} from "./validation.service";
-import {FormlyMessages} from "./../../shared/auto-forms/services/formly.messages";
-import {FormlyEventEmitter} from "./../../shared/auto-forms/services/formly.event.emitter";
-import {FormlyConfig} from "./../../shared/auto-forms/services/formly.config";
-import {TemplateDirectives} from "./../../shared/auto-forms/templates/templates";
-import {FormlyFieldConfig} from "./../../shared/auto-forms/components/formly.field.config";
 
 // automatic forms import
 
 export class CrudDialogManagerComponent extends DataSourceComponent {
     // items fields
-    private formFields: Array < FormlyFieldConfig > = [];
     private selectedItem: any = null;
     private newModel: any = {content: ''};
     private currentItem: any;
 
     //autoform vars
-    private fm: FormlyMessages;
-    private fc: FormlyConfig;
-    protected fb: FormBuilder;
+
 
     //form groups for create forms
-    addForm;
-    editForm;
     form;
     Stream;
 
@@ -53,6 +42,9 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
                 router: Router,
                 public contextName: string,
                 public entityTypeName: string,
+                public fm: FormlyMessages,
+                public fc: FormlyConfig,
+                public fb: FormBuilder,
                 datasourceOptions?: any) {
         super(uowf,
             logger,
@@ -61,17 +53,15 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
             entityTypeName,
             datasourceOptions == null ? null : datasourceOptions
         );
-        this.fm = new FormlyMessages;
-        this.fc = new FormlyConfig;
-        this.fb = new FormBuilder;
+
         this.entityName = entityTypeName;
     }
 
-    addEvent() {
+    public addDialog() {
         this.tmpEntity = {
             content: "",
         };
-        this.createForm(this.fm, this.fc, this.form);
+        this.createForm(this.tmpEntity);
         this.dialogHeader = 'Add ' + this.entityName;
         this.dialogOk = () => {
             this.datasource.add(this.tmpEntity);
@@ -86,7 +76,7 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
         this.showDialog = true;
     }
 
-    delEvent(event) {
+    public removeDialog(event) {
         if (event.length == 0) return;
 
         let multiple = event.length > 1;
@@ -108,9 +98,9 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
         this.showDialog = true;
     }
 
-    public editEvent(item): void {
+    public editDialog(item): void {
         this.tmpEntity = item;
-        this.createForm(this.fm, this.fc, this.form);
+        this.createForm(item);
         this.dialogHeader = 'Edit ' + this.entityName;
 
         this.dialogOk = () => {
@@ -129,9 +119,54 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
         //Cancel
         this.dialogCancel = () => {
             this.clearDialog();
-        }
+        };
         this.showDialog = true;
     }
+
+    public createForm(model) {
+        if (!this.form) {
+            this.form = this.fb.group({});
+        }
+        this.fm.addStringMessage("required", "This field is required.");
+        this.fm.addStringMessage("invalidEmailAddress", "Invalid Email Address");
+        this.fm.addStringMessage("maxlength", "Maximum Length Exceeded.");
+        this.fm.addStringMessage("minlength", "Should have atleast 2 Characters");
+
+        console.log("this is the fucking fc " + this.fc);
+        let localFc = this.fc;
+        ["input"].forEach(field=> {
+            localFc.setType({
+                name: field,
+                component: TemplateDirectives[field]
+            });
+        });
+        // function (field) {
+        //
+        // });
+
+        this.Stream = new FormlyEventEmitter();
+        let ffc: FormlyFieldConfig = {
+            type: "input",
+            key: "content",
+            templateOptions: {
+                type: "text",
+                label: "Content",
+                disabled: false,
+                placeholder: "content",
+            }
+        };
+
+        this.formFields.push(ffc);
+
+        this.Stream.emit({
+            model: model,
+            fields: this.GetFieldsConfig()
+        });
+        // }, 0);
+    }
+
+    private formFields: Array < FormlyFieldConfig > = [];
+
 
     ok() {
         this.showDialog = false;
@@ -162,49 +197,5 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
         this.tmpEntity = {content: ""}
     }
 
-    public createForm(fm: FormlyMessages, fc: FormlyConfig, form) {
-        if (!form) {
-            form = this.fb.group({});
-        }
-        fm.addStringMessage("required", "This field is required.");
-        fm.addStringMessage("invalidEmailAddress", "Invalid Email Address");
-        fm.addStringMessage("maxlength", "Maximum Length Exceeded.");
-        fm.addStringMessage("minlength", "Should have atleast 2 Characters");
 
-        ["input"].forEach(function (field) {
-            fc.setType({
-                name: field,
-                component: TemplateDirectives[field]
-            });
-        });
-
-        this.Stream = new FormlyEventEmitter();
-
-        setTimeout(() => {
-                this.formFields = [
-                    {
-                        type: "input",
-                        key: "content",
-                        templateOptions: {
-                            type: "text",
-                            label: "Content",
-                            disabled: false,
-                            placeholder: "content",
-                        }
-                    }
-                ]
-                ;
-
-                this.Stream.emit({
-                    model: this.selectedItem,
-                    fields: this.formFields
-                });
-            }
-
-            ,
-            0
-        );
-
-
-    }
 }

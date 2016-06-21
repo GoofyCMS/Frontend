@@ -9,6 +9,7 @@ import {Logger} from "./../../../../shared/resources/logger";
 import {Router} from "@angular/router-deprecated";
 import {CrudDialogManagerComponent} from "../../../../shared/base-classes/crud-dialog-manager.component";
 import {UnitOfWorkFactory} from "../../../../shared/services/unitofwork";
+import {FormBuilder} from "@angular/common";
 
 @Component({
     selector: "user-claims",
@@ -19,8 +20,11 @@ import {UnitOfWorkFactory} from "../../../../shared/services/unitofwork";
 export class UserClaimComponent extends CrudDialogManagerComponent implements OnInit {
     constructor(@Inject(UnitOfWorkFactory) uowf: UnitOfWorkFactory,
                 @Inject(Logger) logger: Logger,
-                @Inject(Router) router) {
-        super(uowf, logger, router, 'administration', 'IdentityUserClaimItem');
+                @Inject(Router) router,
+                fm: FormlyMessages,
+                fc: FormlyConfig,
+                fb: FormBuilder) {
+        super(uowf, logger, router, 'administration', 'IdentityUserClaimItem', fm, fc, fb);
     }
 
     ngOnInit(): void {

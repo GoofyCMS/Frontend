@@ -7,6 +7,7 @@ import {Injectable, ViewContainerRef, Type} from "@angular/core";
 export class FormlyConfig {
   types: {[name: string]: Type} = {};
   manipulators: {[name: string]: TemplateManipulator} = {};
+
   setType(options: TypeOption) {
     this.types[options.name] = options.component;
   }

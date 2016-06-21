@@ -4,10 +4,9 @@ import {ReflectiveInjector} from "@angular/core";
 
 export class BaseComponent {
 
-    public logger: Logger;
     public router: Router;
 
-    constructor() {
+    constructor(protected logger: Logger) {
         // let injector: any = ReflectiveInjector.resolveAndCreate([Logger, Router]);
         this.logger = new Logger();
         // this.router = new Router();

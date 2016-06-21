@@ -78,6 +78,28 @@ export class AuthService {
             .subscribe(
                 response => {
                     console.log("status of login url: " + response.json().access_token);
+
+                    function configureBreeze() {
+                        // configure to use the model library for Angular
+                        breeze.config.initializeAdapterInstance("modelLibrary", "backingStore", true);
+
+                        var accessToken = response.json().access_token;
+
+                        if (response.json().access_token) {
+                            // get the current default Breeze AJAX adapter & add header required for the         Web API bearer token mechanism
+                            var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
+                            ajaxAdapter.defaultSettings = {
+                                headers: {
+
+                                    'Authorization': 'Bearer ' + accessToken
+                                },
+                            };
+                        }
+                    }
+
+                    configureBreeze();
+
+
                     localStorage.setItem('token', response.json().access_token);
                     requestOptions.headers.append('Authorization', 'Bearer ' + response.json().access_token);
                     this.IsLogged = true;
