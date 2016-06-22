@@ -2,17 +2,17 @@ import {Component, ElementRef, AfterViewInit} from "@angular/core";
 import {FormlyMessages, FormlyMessage} from "./../services/formly.messages";
 import {FormlyPubSub} from "./../services/formly.event.emitter";
 import {Field} from "./field";
-import {InputText, Spinner} from "primeng/primeng";
+import {InputText, Spinner, Calendar} from "primeng/primeng";
 
 
 @Component({
     selector: "formly-field-input",
     template: `
         <div class="ui-grid-row" [ngFormModel]="form" [ngClass]="{'has-danger': !formControl.valid}" *ngIf="!templateOptions.hidden">
-            <div class="ui-grid-col-1">
+            <div class="">
                 <label  class="">{{templateOptions.label}}</label>
             </div>
-            <div class="ui-grid-col-11" [ngSwitch]="templateOptions.type">
+            <div class="" [ngSwitch]="templateOptions.type">
                 <input  *ngSwitchWhen="'password'"
                     type="password"
                     pInputText
@@ -23,6 +23,15 @@ import {InputText, Spinner} from "primeng/primeng";
                     [disabled]="templateOptions.disabled"
                     [(ngModel)]="model"
                     [ngClass]="{'form-control-danger': !form.controls[key].valid}">
+                <p-calendar *ngSwitchWhen="'datetime'" 
+                    dateFormat="yy/mm/dd" 
+                    [(ngModel)]="model" 
+                    [ngControl]="key" 
+                    id="{{key}}"
+                    [disabled]="templateOptions.disabled"
+                    (keyup)="inputChange($event, 'value')" 
+                    (change)="inputChange($event, 'value')">
+                </p-calendar>
                 <p-spinner *ngSwitchWhen="'number'"
                         [ngControl]="key" 
                         class="" 
@@ -52,7 +61,7 @@ import {InputText, Spinner} from "primeng/primeng";
             </div>
         </div>
     `,
-    directives: [FormlyMessage, InputText, Spinner],
+    directives: [FormlyMessage, InputText, Spinner, Calendar],
     inputs: ["form", "update", "templateOptions", "key", "field", "formModel", "model"]
 })
 export class FormlyFieldInput extends Field implements AfterViewInit {

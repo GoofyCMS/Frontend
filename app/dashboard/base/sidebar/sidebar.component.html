@@ -48,32 +48,32 @@
             <a class="SubMenuLink"
                [routerLink]="['AuthPermissions']"
                (click)="mobileMenuActive = false">&#9679; Permissions</a>
-            <a class="SubMenuLink"
-               [routerLink]="['AuthUserRoles']"
-               (click)="mobileMenuActive = false">&#9679; User Roles</a>
-            <a class="SubMenuLink"
-               [routerLink]="['AuthUserClaims']"
-               (click)="mobileMenuActive = false">&#9679; User Claims</a>
-            <a class="SubMenuLink"
-               [routerLink]="['AuthRoleClaims']"
-               (click)="mobileMenuActive = false">&#9679; Role Claims</a>
+            <!--<a class="SubMenuLink"-->
+            <!--[routerLink]="['AuthUserRoles']"-->
+            <!--(click)="mobileMenuActive = false">&#9679; User Roles</a>-->
+            <!--<a class="SubMenuLink"-->
+            <!--[routerLink]="['AuthUserClaims']"-->
+            <!--(click)="mobileMenuActive = false">&#9679; User Claims</a>-->
+            <!--<a class="SubMenuLink"-->
+            <!--[routerLink]="['AuthRoleClaims']"-->
+            <!--(click)="mobileMenuActive = false">&#9679; Role Claims</a>-->
         </div>
 
-        <span id="menu_blog"
-              #blogmenutitle
-              class="MenuSideMainLink bordersOfMenuSide"
-              [class.MenuSideMainLinkDark]="blogmenutitle.id == activeMenuId"
-              (click)="activeMenuId = blogmenutitle.id">
-              <!--<img src="showcase/resources/images/mono/panel.svg" />-->
-            <!--<img class="hiddenIcons" src="showcase/resources/images/mono/panelBlue.svg" />-->
-              <i class="fa fa-server"></i>
-              <span class="MainLinkText">Blog</span>
-        </span>
-        <div class="SubMenuLinkContainer"
-             [ngClass]="{'submenushow': (blogmenutitle.id == activeMenuId), 'submenuhide': (blogmenutitle.id != activeMenuId)}">
-            <a class="SubMenuLink"
-               [routerLink]="['ArticlesList']"
-               (click)="mobileMenuActive = false">Articles</a>
+        <div *ngIf="isActive('Blog')">
+            <span id="menu_blog"
+                  #blogmenutitle
+                  class="MenuSideMainLink bordersOfMenuSide"
+                  [class.MenuSideMainLinkDark]="blogmenutitle.id == activeMenuId"
+                  (click)="activeMenuId = blogmenutitle.id">
+                  <i class="fa fa-server"></i>
+                  <span class="MainLinkText">Blog</span>
+            </span>
+            <div class="SubMenuLinkContainer"
+                 [ngClass]="{'submenushow': (blogmenutitle.id == activeMenuId), 'submenuhide': (blogmenutitle.id != activeMenuId)}">
+                <a class="SubMenuLink"
+                   [routerLink]="['ArticlesList']"
+                   (click)="mobileMenuActive = false">Articles</a>
+            </div>
         </div>
 
 

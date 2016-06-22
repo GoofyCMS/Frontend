@@ -4,7 +4,7 @@ import {BaseService} from "../../base.service";
 
 @Injectable()
 export class ArticleService extends BaseService {
-
+    
     constructor(@Inject(UnitOfWorkFactory) _uowf: UnitOfWorkFactory) {
         super(_uowf, "blog", "ArticleItem");
 

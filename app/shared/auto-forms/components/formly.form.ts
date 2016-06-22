@@ -9,7 +9,6 @@ import {FormlyConfig} from "../services/formly.config";
     selector: "formly-form",
     directives: [FormlyField, FormlyFieldGroup],
     template: `
-        <div class="ui-grid ui-grid-responsive ui-grid-pad">
             <form class="" role="form" novalidate [ngFormModel]="form">
                 <div class="" *ngFor="let f of fields" [ngClass]="f.className">
                     <formly-field 
@@ -38,7 +37,6 @@ import {FormlyConfig} from "../services/formly.config";
                 </div>
                 <ng-content></ng-content>
             </form>
-        </div>
             `,
     providers: [NgFormModel, FormlyPubSub],
     inputs: ["field", "formModel", "form", "hide", "model", "key", "fields"]

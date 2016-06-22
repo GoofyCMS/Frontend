@@ -7,11 +7,11 @@ import {Dropdown, SelectItem, MultiSelect} from "primeng/primeng";
 @Component({
     selector: "formly-field-select",
     template: `
-        <div class="ui-grid-row" [ngFormModel]="form">
-            <div class="ui-grid-col-1">
+        <div class="" [ngFormModel]="form">
+            <div class="">
                 <label for="" class="">{{templateOptions.label}}</label>
             </div>
-            <div class="ui-grid-col-1">
+            <div class="">
                 <p-dropdown 
                     [id]="key" 
                     [ngControl]="key" 

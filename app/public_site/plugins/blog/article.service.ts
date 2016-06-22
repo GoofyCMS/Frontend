@@ -1,16 +1,19 @@
-import {Injectable} from "@angular/core";
+import {Injectable, Inject} from "@angular/core";
 import {ARTICLES} from "../../../shared/mocks/mock-articles";
 import {Observable} from "rxjs/rx";
+import {BaseService} from "../../../dashboard/base.service";
+import {UnitOfWorkFactory} from "../../../shared/services/unitofwork";
 
 @Injectable()
-export class ArticleService {
-    getArticles(){
-        // return Observable.from(ARTICLES);
+export class ArticleService extends BaseService {
+    
+
+    constructor(@Inject(UnitOfWorkFactory) _uowf: UnitOfWorkFactory) {
+        super(_uowf, "blogPublic", "ArticleItem");
+
     }
 
-    getArticle(id: number) {
-        // return Observable.from(ARTICLES)
-        //     .filter(s => s.id === id)
-        //     .subscribe();
+    public getItems() {
+        return this._repo.getAll();
     }
 }

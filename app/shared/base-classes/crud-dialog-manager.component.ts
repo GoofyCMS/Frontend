@@ -14,26 +14,17 @@ import {Router} from "@angular/router-deprecated";
 // automatic forms import
 
 export class CrudDialogManagerComponent extends DataSourceComponent {
-    // items fields
-    private selectedItem: any = null;
-    private newModel: any = {content: ''};
-    private currentItem: any;
-
-    //autoform vars
-
-
-    //form groups for create forms
+    //var for create forms
     form;
     Stream;
-
     tmpEntity: any = null;
+    private formFields: Array < FormlyFieldConfig > = [];
 
     // dialog fields
     showDialog: boolean = false;
     dialogHeader: string = null;
     dialogOk: Function = null;
     dialogCancel = null;
-
     dialogContent: string = null;
     entityName: string = null;
 
@@ -53,21 +44,21 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
             entityTypeName,
             datasourceOptions == null ? null : datasourceOptions
         );
-
         this.entityName = entityTypeName;
     }
 
-    public addDialog() {
+    public addDialog(): void {
         this.tmpEntity = {
             content: "",
         };
         this.createForm(this.tmpEntity);
         this.dialogHeader = 'Add ' + this.entityName;
         this.dialogOk = () => {
-            this.datasource.add(this.tmpEntity);
-            this.datasource.saveChanges()
-                .then(() => this.logger.logSuccess('Success!', 'All changes are saved!', null, this, true))
-                .catch((e) => this.logger.logError('Error!', `There's an error in the request`, e, this, true));
+            this.datasource.add(this.tmpEntity)
+                .then(()=>
+                    this.datasource.saveChanges()
+                        .then(() => this.logger.logSuccess('Success!', 'All changes are saved!', null, this, true))
+                        .catch((e) => this.logger.logError('Error!', `There's an error in the request`, e, this, true)));
             this.clearDialog();
         };
         this.dialogCancel = () => {
@@ -76,7 +67,7 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
         this.showDialog = true;
     }
 
-    public removeDialog(event) {
+    public removeDialog(event): void {
         if (event.length == 0) return;
 
         let multiple = event.length > 1;
@@ -88,12 +79,12 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
             "The selected entity will be deleted. Do you wish to continue?";
         this.dialogOk = multiple ?
             () => {
-                this.datasource.removeAll(event);
-                this.datasource.saveChanges(event);
+                this.datasource.removeAll(event)
+                    .then(()=>this.datasource.saveChanges());
             }
             : () => {
-            this.datasource.remove(event);
-            this.datasource.saveChanges();
+            this.datasource.remove(event)
+                .then(()=>this.datasource.saveChanges());
         };
         this.showDialog = true;
     }
@@ -102,100 +93,61 @@ export class CrudDialogManagerComponent extends DataSourceComponent {
         this.tmpEntity = item;
         this.createForm(item);
         this.dialogHeader = 'Edit ' + this.entityName;
-
         this.dialogOk = () => {
             this.datasource.saveChanges()
-                .then(
-                    () => {
+                .then(() => {
                         this.logger.logSuccess('Success!', 'All changes are saved!', null, this, true);
-                        this.datasource.rejectChanges()
-                            .then(()=> this.datasource.reload());
-                        this.clearDialog();
                     }
-                )
-                .catch((e) => this.logger.logError('Error!', `There's an error in the request`, e, this, true));
-            this.clearDialog();
+                ).catch((e) => this.logger.logError('Error!', `There's an error in the request`, e, this, true));
         };
-        //Cancel
         this.dialogCancel = () => {
             this.clearDialog();
         };
         this.showDialog = true;
     }
 
-    public createForm(model) {
-        if (!this.form) {
-            this.form = this.fb.group({});
-        }
+    public createForm(model): void {
+        // if (!this.form)
+        this.form = this.fb.group({});
+
         this.fm.addStringMessage("required", "This field is required.");
         this.fm.addStringMessage("invalidEmailAddress", "Invalid Email Address");
         this.fm.addStringMessage("maxlength", "Maximum Length Exceeded.");
         this.fm.addStringMessage("minlength", "Should have atleast 2 Characters");
 
-        console.log("this is the fucking fc " + this.fc);
         let localFc = this.fc;
-        ["input"].forEach(field=> {
+        ["input", "select"].forEach(field=> {
             localFc.setType({
                 name: field,
                 component: TemplateDirectives[field]
             });
         });
-        // function (field) {
-        //
-        // });
-
         this.Stream = new FormlyEventEmitter();
-        let ffc: FormlyFieldConfig = {
-            type: "input",
-            key: "content",
-            templateOptions: {
-                type: "text",
-                label: "Content",
-                disabled: false,
-                placeholder: "content",
-            }
-        };
-
-        this.formFields.push(ffc);
-
+        this.formFields = this.GetFieldsConfig();
         this.Stream.emit({
             model: model,
-            fields: this.GetFieldsConfig()
+            fields: this.formFields
         });
-        // }, 0);
     }
 
-    private formFields: Array < FormlyFieldConfig > = [];
-
-
-    ok() {
+    ok(): void {
         this.showDialog = false;
         this.dialogOk();
         this.clearDialog();
     }
 
-    cancel() {
-        this.showDialog = false;
+    cancel(): void {
         this.dialogCancel();
         this.clearDialog();
-
     }
 
-    clearDialog() {
+    clearDialog(): void {
+        this.showDialog = false;
         this.dialogContent = null;
         this.dialogOk = null;
         this.dialogCancel = null;
-        // this.tmpEntity = null;
         this.dialogHeader = null;
+        // this.tmpEntity = null;
     }
-
-    clearData() {
-        this.tmpEntity = null;
-    }
-
-    resetModel() {
-        this.tmpEntity = {content: ""}
-    }
-
 
 }

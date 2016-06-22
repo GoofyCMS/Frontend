@@ -3,6 +3,7 @@ import {Http, Response, Headers, RequestOptions, RequestOptionsArgs} from "@angu
 import {Logger} from "../resources/logger";
 import {Message} from "primeng/primeng";
 import stringEndsWith = breeze.core.stringEndsWith;
+import {Router} from "@angular/router-deprecated";
 
 
 export class Privilege {
@@ -47,14 +48,22 @@ export class AuthService {
     public CurrentUser: string;
     public Privileges: Privileges;
     public IsLogged: boolean;
+    public headers: Headers;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private router: Router) {
         this._loginUrl = "http://localhost:5000/token";
         this._permissionUrl = "http://localhost:5000/permissions";
         this._logoutUrl = "";
         this.Privileges = new Privileges();
         this.IsLogged = false;
         console.log('Executing auth constructor');
+        this.resetHeaders();
+    }
+
+    resetHeaders() {
+        this.headers = new Headers();
+        this.headers.append("Accept", "application/json");
+        this.headers.append('Content-Type', 'application/json');
     }
 
     addMessage(messages: Message[], severity: string, summary: string, detail: string, timer: number = 2500): void {
@@ -67,30 +76,24 @@ export class AuthService {
 
     login(Username: string, Password: string, messages: Message[]): void {
         let body: any = JSON.stringify({Username, Password});
-        // let body: string = `username=${Username}&password=${Password}`;
         let requestOptions: RequestOptions = new RequestOptions();
-        // requestOptions.headers = contenturlencoded;
-        let headersLocal = new Headers();
-        headersLocal.append("Accept", "application/json");
-        headersLocal.append('Content-Type', 'application/json');
-        requestOptions.headers = headersLocal;
+
+        requestOptions.headers = this.headers;
         this.http.post(this._loginUrl, body, requestOptions)
             .subscribe(
                 response => {
-                    console.log("status of login url: " + response.json().access_token);
+                    this.resetHeaders();
 
                     function configureBreeze() {
                         // configure to use the model library for Angular
                         breeze.config.initializeAdapterInstance("modelLibrary", "backingStore", true);
-
                         var accessToken = response.json().access_token;
-
                         if (response.json().access_token) {
-                            // get the current default Breeze AJAX adapter & add header required for the         Web API bearer token mechanism
+                            // get the current default Breeze AJAX adapter & add header required for the
+                            // Web API bearer token mechanism
                             var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
                             ajaxAdapter.defaultSettings = {
                                 headers: {
-
                                     'Authorization': 'Bearer ' + accessToken
                                 },
                             };
@@ -98,28 +101,23 @@ export class AuthService {
                     }
 
                     configureBreeze();
-
-
-                    localStorage.setItem('token', response.json().access_token);
-                    requestOptions.headers.append('Authorization', 'Bearer ' + response.json().access_token);
+                    this.headers.append('Authorization', 'Bearer ' + response.json().access_token);
+                    requestOptions.headers = this.headers;
                     this.IsLogged = true;
-                    let Permissions = ["PluginItem", "ArticleItem"];
+                    //todo put dinamically all plugins here
+                    let Permissions = ["PluginItem", "ArticleItem", "PermissionItem", "GoofyUserItem", "GoofyRoleItem"];
                     let permBody = JSON.stringify({Permissions});
 
                     this.http.post(this._permissionUrl, permBody, requestOptions)
                         .subscribe(
                             (response: Response)=> {
-                                console.log("status of permissions url: " + response.statusText);
                                 let res = response.json();
-
                                 Permissions
                                     .forEach
                                     (perm => {
                                             this.Privileges.addPrivileges(perm, res[perm]);
                                         }
                                     );
-
-                                console.log("body of test url: " + response.json().permissions);
                             },
                             error => {
                                 console.log(error.text());
@@ -134,9 +132,11 @@ export class AuthService {
                     this.addMessage(messages, "error", "Login Failed", "Invalid Credentials");
                 }
             );
+        this.router.navigate(['GoofyDashboard', 'Main']);
     }
 
     logout(messages: Message[]): void {
+        this.router.navigate(['GoofyDashboard', 'Login']);
         this.addMessage(messages, "info", "Logout Succesful", "Bye " + this.CurrentUser);
         localStorage.removeItem("token");
         this.IsLogged = false;

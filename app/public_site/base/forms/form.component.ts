@@ -20,12 +20,12 @@ import {Button} from "primeng/primeng";
 
 
 @Component({
-    selector: "home",
-    templateUrl: "./app/public_site/base/home/home.component.html",
+    selector: "form",
+    templateUrl: "./app/public_site/base/forms/form.component.html",
     directives: [FormlyForm, Button],
     providers: [FormlyConfig, FormlyMessages]
 })
-export class HomeComponent {
+export class FormComponent {
     form;
     Stream;
     author;

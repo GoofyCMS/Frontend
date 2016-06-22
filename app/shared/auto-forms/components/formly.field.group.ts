@@ -11,7 +11,7 @@ import {FormlyFieldConfig} from "./formly.field.config";
 @Component({
     selector: "formly-field-group",
     template: `
-        <div class="ui-grid-row" *ngFor="let f of field.fieldGroup">
+        <div class="" *ngFor="let f of field.fieldGroup">
             <formly-field 
                 [hide]="f.hideExpression" 
                 [model]="model?model[f.key]:''" 

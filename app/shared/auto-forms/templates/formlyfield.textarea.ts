@@ -7,11 +7,11 @@ import {InputTextarea} from "primeng/primeng";
 @Component({
     selector: "formly-field-textarea",
     template: `
-        <div class="ui-grid-row" [ngFormModel]="form" *ngIf="!templateOptions.hidden">
-            <div class="ui-grid-col-1">
+        <div class="" [ngFormModel]="form" *ngIf="!templateOptions.hidden">
+            <div class="">
                 <label attr.for="{{key}}" class="form-control-label">{{templateOptions.label}}</label>
             </div>
-            <div class="ui-grid-col-11">
+            <div class="">
                 <textarea pInputTextarea 
                         name="{{key}}"
                         [ngControl]="key" 

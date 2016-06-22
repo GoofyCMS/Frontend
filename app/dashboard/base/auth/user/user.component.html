@@ -2,23 +2,62 @@
     <datatable
             [datasource]="datasource"
             [columns]="columns"
-            (addEvent)="addEvent()"
-            (editEvent)="editEvent($event)"
-            (delEvent)="delEvent($event)">
+            (addEvent)="addDialog()"
+            (editEvent)="editDialog($event)"
+            (delEvent)="removeDialog($event)">
         <datatable-dialog>
-            <p-dialog [header]="dialogHeader" [visible]="showDialog" [responsive]="true" [resizable]="false"
+            <p-dialog [header]="dialogHeader" [visible]="showAddDialog" [responsive]="true" [resizable]="false"
                       [minHeight]="600" closable="false" showEffect="fade" [modal]="true">
                 <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="dialogContent">
                     <h3> {{dialogContent}}</h3>
                 </div>
-                <formly-form [model]="tmpEntity"
-                             [fields]="formFields"
-                             (formSubmit)="resetForm()"
-                             [form]="form">
-                </formly-form>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3"></div>
+                    <div class="ui-grid-col-6">
+                        <label for="username">Username</label>
+                        <input pInputText id="username" type="text" #username placeholder="Username">
+                    </div>
+                    <div class="ui-grid-col-3"></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3"></div>
+                    <div class="ui-grid-col-6">
+                        <label for="password">Password</label>
+                        <input pPassword id="password" type="password" #password placeholder="Password">
+                    </div>
+                    <div class="ui-grid-col-3"></div>
+                </div>
                 <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
                     <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel"></button>
-                    <button type="button" pButton icon="fa-check" (click)="ok()" label="Ok"></button>
+                    <button type="button" pButton icon="fa-check" (click)="add(username.value, password.value)"
+                            label="Ok"></button>
+                </div>
+            </p-dialog>
+            <p-dialog [header]="dialogHeader" [visible]="showEditDialog" [responsive]="false" [resizable]="false"
+                      [minHeight]="600" closable="false" showEffect="fade" [modal]="true">
+                <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="dialogContent">
+                    <h3> {{dialogContent}}</h3>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3"></div>
+                    <div class="ui-grid-col-6">
+                        <label for="claims">Claims</label>
+                        <p-multiSelect [options]="permissionsSelect" [(ngModel)]="selectedPermissions" id="claims"></p-multiSelect>
+                    </div>
+                    <div class="ui-grid-col-3"></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3"></div>
+                    <div class="ui-grid-col-6">
+                        <label for="roles">Roles</label>
+                        <p-multiSelect [options]="rolesSelect" [(ngModel)]="selectedRoles" id="roles"></p-multiSelect>
+                    </div>
+                    <div class="ui-grid-col-3"></div>
+                </div>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel"></button>
+                    <button type="button" pButton icon="fa-check" (click)="edit()" label="Ok"></button>
                 </div>
             </p-dialog>
         </datatable-dialog>

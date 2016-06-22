@@ -26,6 +26,7 @@ export class RoleComponent extends CrudDialogManagerComponent implements OnInit 
                 fc: FormlyConfig,
                 fb: FormBuilder) {
         super(uowf, logger, router, 'administration', 'GoofyRoleItem', fm, fc, fb);
+        
     }
 
     ngOnInit(): void {

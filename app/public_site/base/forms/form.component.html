@@ -1,0 +1,14 @@
+<div class="ContentSideSections">
+
+    <formly-form [model]="user" [fields]="userFields" (formSubmit)="console($event)" [form]="form">
+        <button pButton type="submit" label="Button" (click)="submit(user)"></button>
+    </formly-form>
+    <hr>
+    <h3>Outside Formly</h3>
+    <br><strong>FORM DATA:</strong><br>
+    <pre>{{user | json}}</pre>
+    <br>
+    <hr>
+
+
+</div>

@@ -1,5 +1,5 @@
 <div class="PC">
-    <sidebar *ngIf="_authService.IsLogged"></sidebar>
+    <sidebar *ngIf="_authService.IsLogged" [_plugins]="_plugins"></sidebar>
     <div class="DashboardHeader">
         <div class="DashboardHeaderInner">
             <div class="DashboardHeaderItem floatRight">
@@ -18,6 +18,13 @@
         </div>
     </div>
     <div class="SiteFooter">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <div *ngIf="_authService.IsLogged">
+                    Click here to <a href (click)="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
         <span class="floatLeft fontSize14 gray"><a href="#">Goofy Dashboard</a>, Copyright &copy; 2016</span>
         <span class="floatRight fontSize14 gray">All rights reserved</span>
         <div style="clear:both"></div>

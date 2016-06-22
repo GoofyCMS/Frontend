@@ -3,6 +3,7 @@ import {CORE_DIRECTIVES} from "@angular/common";
 import {ROUTER_DIRECTIVES, RouteConfig, RouterLink, ROUTER_PROVIDERS} from "@angular/router-deprecated";
 import {NavbarComponent} from "./base/navbar/navbar.component";
 import {HomeComponent} from "./base/home/home.component";
+import {FormComponent} from "./base/forms/form.component";
 
 
 import {ArticleListComponent} from "./plugins/blog/articles-list.component";
@@ -16,6 +17,7 @@ import {ArticleListComponent} from "./plugins/blog/articles-list.component";
 @RouteConfig([
     {path: "/", as: "Home", component: HomeComponent, useAsDefault: true},
     {path: "/articles", as: "ArticlesList", component: ArticleListComponent},
+    {path: "/forms", as: "Forms", component: FormComponent},
     {path: "/dashboard/**", redirectTo: ["GoofyDashboard"]},
     {path: "/**", redirectTo: ["Home"]},
 ])

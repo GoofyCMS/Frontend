@@ -2,9 +2,9 @@
     <datatable
             [datasource]="datasource"
             [columns]="columns"
-            (addEvent)="addEvent()"
-            (editEvent)="editEvent($event)"
-            (delEvent)="delEvent($event)">
+            (addEvent)="addDialog()"
+            (editEvent)="editDialog($event)"
+            (delEvent)="removeDialog($event)">
         <datatable-dialog>
             <p-dialog [header]="dialogHeader" [visible]="showDialog" [responsive]="true" [resizable]="false"
                       [minHeight]="600" closable="false" showEffect="fade" [modal]="true">

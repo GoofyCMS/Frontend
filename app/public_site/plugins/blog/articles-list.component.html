@@ -8,14 +8,13 @@
             {{article.title}}
         </div>
         <div class="ArticleSectionInfo">
-            Published <strong>{{article.createdDate}}</strong> by <strong>{{article.author}}</strong>
+            Published  by <strong>{{article.authorName}}</strong>
         </div>
         <div class="ArticleSectionContent">
-            {{article.text | slice:0:200 }}<span *ngIf="article.text.length > 50"> ... </span><br></div>
-        <div class="ArticleSectionReadMore" *ngIf="article.text.length > 50">
+            {{article.content | slice:0:200 }}<span *ngIf="article.content.length > 50"> ... </span><br></div>
+        <div class="ArticleSectionReadMore" *ngIf="article.content.length > 50">
             <button pButton="button" label="Read More..."></button>
         </div>
     </div>
-
-
 </div>
+

@@ -19,8 +19,8 @@ export class DivComponent {
 @Component({
     selector: "formly-field",
     template: `
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-12">
+        <div class="">
+            <div class="">
                 <div child-host #child></div>
                 <div *ngIf="field.template" [innerHtml]="field.template"></div>
             </div>

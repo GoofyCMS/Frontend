@@ -1,4 +1,4 @@
-import {Component, Inject} from "@angular/core";
+import {Component, Inject, Input, OnInit} from "@angular/core";
 import {CORE_DIRECTIVES} from "@angular/common";
 import {ROUTER_DIRECTIVES, RouteConfig, RouterLink} from "@angular/router-deprecated";
 import {MainContentComponent} from "./base/mainContent/mainContent";
@@ -16,6 +16,7 @@ import {
     UserComponent
 } from "./base/auth/auth";
 import {AuthService} from "../shared/services/auth.service";
+import {PluginsService} from "./plugins/plugin.service";
 
 
 @Component({
@@ -23,6 +24,7 @@ import {AuthService} from "../shared/services/auth.service";
     styleUrls: ["./app/dashboard/dashboard.component.css"],
     templateUrl: "./app/dashboard/dashboard.component.html",
     directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, RouterLink, MenuComponent, Sidebar],
+    providers: [PluginsService]
 })
 @RouteConfig([
     {path: "/login", as: "Login", component: LoginComponent, useAsDefault: true},
@@ -37,11 +39,25 @@ import {AuthService} from "../shared/services/auth.service";
     {path: "/auth-role-claims", as: "AuthRoleClaims", component: RoleClaimComponent},
     {path: "/**", redirectTo: ["Login"]},
 ])
-export class GoofyDashboardComponent {
+export class GoofyDashboardComponent implements OnInit {
     public toggle: boolean = true;
+    private _plugins: any[];
 
-    constructor(@Inject('AuthServiceProvider') public _authService: AuthService) {
+    constructor(@Inject('AuthServiceProvider') public _authService: AuthService,
+                private _pluginsService: PluginsService) {
 
+    }
+
+    public getPlugins(): void {
+        this._plugins = this._pluginsService.pluginsList;
+        // this._pluginsService.getPlugins()
+        //     .then(
+        //         res=> this._plugins = res.results
+        //     );
+    }
+
+    ngOnInit(): void {
+        this.getPlugins();
     }
 
 }
