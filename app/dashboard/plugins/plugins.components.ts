@@ -4,6 +4,7 @@ import {InputSwitch} from "primeng/primeng";
 import {CanActivate} from "@angular/router-deprecated";
 import {AuthService} from "../../shared/services/auth.service";
 import {Observable, Subscriber} from "rxjs/rx";
+import {PLUGINS} from "../../shared/mocks/mock-plugins";
 
 @Component({
     selector: "plugins",
@@ -26,10 +27,11 @@ export class PluginsComponent implements OnInit {
     }
 
     public getPlugins(): void {
-        this._pluginsService.getPlugins()
-            .then(
-                res=> this._plugins = res.results
-            );
+        // this._pluginsService.getPlugins()
+        //     .then(
+        //         res=> this._plugins = res.results
+        //     );
+        this._plugins = PLUGINS;
     }
 
     changeState(plugin) {

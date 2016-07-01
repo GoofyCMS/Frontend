@@ -7,6 +7,8 @@ import {HTTP_PROVIDERS, Http} from "@angular/http";
 import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
 import {enableProdMode} from '@angular/core';
 
+enableProdMode();
+
 // load obs libs
 import {Observable} from "rxjs/observable";
 import "rxjs/add/operator/map";
@@ -22,6 +24,7 @@ import {FormlyBootstrap} from "./shared/auto-forms/templates/formlyBootstrap";
 
 // cargando componente principal de la aplicacion
 import {GoofyAppComponent} from "./goofy.app.component";
+
 
 // Angular-Breeze Q polyfill
 (function (breeze) {

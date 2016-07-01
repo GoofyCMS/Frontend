@@ -3,5 +3,5 @@ export interface IPlugin {
     name: string;
     url: string;
     author: string;
-    state: boolean;
+    enabled: boolean;
 }

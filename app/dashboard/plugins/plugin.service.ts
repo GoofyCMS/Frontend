@@ -24,6 +24,8 @@ export class PluginsService extends BaseService {
         return this._repo.getAll()
     }
 
+
+
     public changeState(plugin) {
         let id = plugin.id;
         let body: any = JSON.stringify({id});
